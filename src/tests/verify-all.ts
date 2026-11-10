@@ -1,4 +1,8 @@
 import assert from "node:assert/strict";
+import {
+  deploymentOrigin,
+  requireDeploymentDatabase,
+} from "../../scripts/cloudflare-deployment.mjs";
 import { publicWorkerEnvironment } from "../../scripts/cloudflare-env.mjs";
 import { mkdtempSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -101,6 +105,33 @@ function result(overrides: Partial<ProviderResult> = {}): ProviderResult {
   };
 }
 try {
+  await check(
+    "Deployment rejects missing or unsafe origins and placeholder databases",
+    async () => {
+      assert.equal(
+        deploymentOrigin("https://whichcvfits.example.workers.dev/"),
+        "https://whichcvfits.example.workers.dev",
+      );
+      for (const value of [
+        undefined,
+        "http://example.com",
+        "https://localhost",
+        "https://example.com/path",
+        "https://user:pass@example.com",
+        "https://example.com/?token=x",
+      ])
+        assert.throws(() => deploymentOrigin(value));
+      assert.throws(() =>
+        requireDeploymentDatabase(
+          '{"database_id":"00000000-0000-0000-0000-000000000000"}',
+        ),
+      );
+      assert.throws(() => requireDeploymentDatabase("{}"));
+      requireDeploymentDatabase(
+        '{"database_id":"12345678-1234-1234-1234-123456789abc"}',
+      );
+    },
+  );
   await check(
     "Worker environment artifacts retain public configuration and reject private dotenv values",
     async () => {
