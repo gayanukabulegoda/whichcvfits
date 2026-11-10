@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import domainGateway from "../../gateway/public/_worker.js";
 import {
   deploymentOrigin,
   requireDeploymentDatabase,
@@ -105,6 +106,99 @@ function result(overrides: Partial<ProviderResult> = {}): ProviderResult {
   };
 }
 try {
+  await check(
+    "Domain gateway preserves sessions and public origin without caching private data",
+    async () => {
+      const origin = "https://whichcvfits.grbulegoda.com";
+      let calls = 0;
+      const upstream = new Response("private result", {
+        headers: {
+          "Set-Cookie": "session=synthetic; HttpOnly; Secure; SameSite=Lax",
+          "Cache-Control": "private, no-store",
+        },
+      });
+      const app = {
+        async fetch(request: Request) {
+          calls++;
+          assert.equal(request.url, origin + "/api/auth");
+          assert.equal(request.method, "POST");
+          assert.equal(
+            request.headers.get("host"),
+            "whichcvfits.grbulegoda.com",
+          );
+          assert.equal(
+            request.headers.get("x-forwarded-host"),
+            "whichcvfits.grbulegoda.com",
+          );
+          assert.equal(request.headers.get("x-forwarded-proto"), "https");
+          assert.equal(request.headers.get("origin"), origin);
+          assert.equal(request.headers.get("cookie"), "session=synthetic");
+          assert.equal(await request.text(), "{}");
+          return upstream;
+        },
+      };
+      const response = await domainGateway.fetch(
+        new Request(origin + "/api/auth", {
+          method: "POST",
+          headers: {
+            Host: "forged.invalid",
+            Origin: origin,
+            Cookie: "session=synthetic",
+            "X-Forwarded-Proto": "http",
+            "X-Forwarded-Host": "forged.invalid",
+          },
+          body: "{}",
+        }),
+        { APP: app },
+      );
+      assert.equal(response, upstream);
+      assert(response.headers.get("cache-control")!.includes("no-store"));
+      assert(response.headers.get("set-cookie")!.includes("HttpOnly"));
+      assert.equal(
+        (
+          await domainGateway.fetch(
+            new Request("https://unconfigured.example/"),
+            { APP: app },
+          )
+        ).status,
+        421,
+      );
+      assert.equal(
+        (
+          await domainGateway.fetch(
+            new Request("http://whichcvfits.grbulegoda.com/path?q=1"),
+            { APP: app },
+          )
+        ).headers.get("location"),
+        origin + "/path?q=1",
+      );
+      assert.equal(
+        (await domainGateway.fetch(new Request(origin), {})).status,
+        503,
+      );
+      assert.equal(calls, 1);
+      const preview = await domainGateway.fetch(
+        new Request("https://whichcvfits-domain.pages.dev/"),
+        {
+          APP: {
+            async fetch() {
+              return new Response("public");
+            },
+          },
+        },
+      );
+      assert.equal(preview.headers.get("x-robots-tag"), "noindex, follow");
+      const failed = await domainGateway.fetch(new Request(origin), {
+        APP: {
+          async fetch() {
+            throw new Error("private error must not leak");
+          },
+        },
+      });
+      assert.equal(failed.status, 502);
+      assert(!(await failed.text()).includes("private error"));
+    },
+  );
   await check(
     "Deployment rejects missing or unsafe origins and placeholder databases",
     async () => {

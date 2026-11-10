@@ -9,6 +9,9 @@ import { deploymentOrigin } from "./cloudflare-deployment.mjs";
 import { pdfFixture, docxFixture } from "./fixtures.mjs";
 
 const base = deploymentOrigin(process.env.DEPLOYMENT_SMOKE_URL);
+const canonicalOrigin = deploymentOrigin(
+  process.env.DEPLOYMENT_EXPECTED_CANONICAL || base,
+);
 const temporary = await mkdtemp(path.join(tmpdir(), "whichcvfits-hosted-"));
 const email = "deployment-smoke." + randomUUID() + "@example.invalid";
 const password = randomUUID() + randomUUID() + "Aa!";
@@ -68,7 +71,7 @@ try {
   assert.equal(
     new URL(await page.locator("link[rel=canonical]").getAttribute("href"))
       .origin,
-    base,
+    canonicalOrigin,
   );
   assert.equal(
     (await context.request.get(base + "/sitemap.xml")).status(),
@@ -76,7 +79,7 @@ try {
   );
   assert(
     (await (await context.request.get(base + "/sitemap.xml")).text()).includes(
-      base,
+      canonicalOrigin,
     ),
   );
   const gate = await context.request.get(base + "/dashboard", {
@@ -256,47 +259,55 @@ VALUES(${quote(candidateId)},${quote(jobId)},'Synthetic Candidate','fixture.txt'
   );
   await api("/api/auth", { action: "logout" });
   assert.deepEqual(errors, []);
-  await mkdir("artifacts/deployment", { recursive: true });
-  await writeFile(
-    "artifacts/deployment/smoke.json",
-    JSON.stringify(
-      {
-        origin: base,
-        verifiedAt: new Date().toISOString(),
-        status: "passed",
-        checks: [
-          "public SSR and canonical",
-          "sitemap",
-          "server protection",
-          "signup/login/logout",
-          "secure cookies",
-          "D1 persistence",
-          "saved model and legacy metadata",
-          "cross-owner read/delete isolation",
-          "atomic run/candidate deletion",
-          "onboarding skip",
-          "origin rejection",
-          "verified-key gate",
-          "local PDF/DOCX and Unicode",
-          "dialog Escape/focus",
-          "320/390/768/1280 workspace reflow",
-        ],
-        liveProviderCalls: false,
-      },
-      null,
-      2,
-    ),
-  );
-  console.log(
-    "PASS: hosted authentication, secure sessions, D1 persistence, origin checks, local PDF/DOCX parsing, modal focus, responsive reflow and public SEO. No AI-provider calls were made.",
-  );
 } finally {
   await browser.close();
-  // Cleanup is attempted even when signup failed after a partial database write.
-  await executeSql(
+  // Cleanup is idempotent and targets only this run's unique synthetic accounts.
+  const cleanup =
     "DELETE FROM users WHERE email IN (" +
-      [email, otherEmail].map(quote).join(",") +
-      ") AND name='Deployment smoke fixture';",
-  );
+    [email, otherEmail].map(quote).join(",") +
+    ") AND name='Deployment smoke fixture';";
+  try {
+    await executeSql(cleanup);
+  } catch {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await executeSql(cleanup);
+  }
   await rm(temporary, { recursive: true, force: true });
 }
+
+await mkdir("artifacts/deployment", { recursive: true });
+await writeFile(
+  "artifacts/deployment/smoke.json",
+  JSON.stringify(
+    {
+      origin: base,
+      canonicalOrigin,
+      verifiedAt: new Date().toISOString(),
+      status: "passed",
+      syntheticFixtureCleanup: "completed",
+      checks: [
+        "public SSR and canonical",
+        "sitemap",
+        "server protection",
+        "signup/login/logout",
+        "secure cookies",
+        "D1 persistence",
+        "saved model and legacy metadata",
+        "cross-owner read/delete isolation",
+        "atomic run/candidate deletion",
+        "onboarding skip",
+        "origin rejection",
+        "verified-key gate",
+        "local PDF/DOCX and Unicode",
+        "dialog Escape/focus",
+        "320/390/768/1280 workspace reflow",
+      ],
+      liveProviderCalls: false,
+    },
+    null,
+    2,
+  ),
+);
+console.log(
+  "PASS: hosted authentication, secure sessions, D1 persistence, origin checks, local PDF/DOCX parsing, modal focus, responsive reflow and public SEO. No AI-provider calls were made.",
+);
