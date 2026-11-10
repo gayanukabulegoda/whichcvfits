@@ -7,6 +7,8 @@ Read this file before modifying the project. CLAUDE.md points here.
 - Keep all work local unless the user explicitly requests deployment.
 - Do not create repositories, initialize Git, commit, push, create cloud resources, apply remote migrations, or deploy without an explicit instruction.
 - Local builds, isolated tests, and local Worker/D1 emulation are supported.
+- The owner authorized the Cloudflare pilot in the configured account. See docs/DEPLOYMENT.md for its URL and deployment procedure. Production D1 contains user data; use the uniquely scoped deployment smoke fixtures, never the local mocked-provider suite against the live site.
+- Do not upgrade the hosting plan or purchase domains without an explicit owner decision.
 - Do not stop or replace another development server; use the isolated QA server on another port.
 - No sub-agent or delegation requirement exists.
 

@@ -1,6 +1,9 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "whichcvfits",
+  "account_id": "0028d5cfe41f0a0fa6e7a05c3e7c0198",
+  "workers_dev": true,
+  "preview_urls": false,
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-13",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
@@ -12,10 +15,13 @@
     {
       "binding": "DB",
       "database_name": "whichcvfits-db",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "2be493a4-6bbf-4792-a4c4-0cd754d8a6d4",
       "migrations_dir": "migrations",
     },
   ],
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://whichcvfits.gayanukabulegoda.workers.dev"
+  },
   "observability": {
     "enabled": false,
   },

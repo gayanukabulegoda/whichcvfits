@@ -39,7 +39,7 @@ Limits: 20 CVs per queue, 5 MiB per file, 20 MiB per selection, 30 PDF pages, an
 
 Scores use normalized nonnegative weights (40/30/20/10 by default). Unmet or unsubstantiated must-haves block shortlisting and cap the score at 45. Exact CV quotes are validated after whitespace normalization; this checks source correspondence, not whether the candidate's claims are true. Scores and model judgments can vary across runs.
 
-## Cloudflare, locally
+## Cloudflare
 
 The same app has a build-selected D1 adapter. The Worker bundle excludes native SQLite and database filesystem code.
 
@@ -51,11 +51,21 @@ npm run preview:cloudflare
 
 Use the provided build/preview scripts: they strip private dotenv values from OpenNext’s generated environment module, retaining only `NEXT_PUBLIC_` configuration. Worker signing/encryption secrets must come from runtime bindings (`.dev.vars` locally); the generated bundle contains no configured secret values.
 
-These commands use local D1 emulation and a local Worker preview. No Cloudflare login, remote database creation, remote migration, or deployment is required. `wrangler.jsonc` has a deliberate placeholder database ID. A real ID, production secrets, and domain configuration are needed for a later authorized deployment.
+These commands use local D1 emulation and a local Worker preview. They do not create resources or deploy remotely. `wrangler.jsonc` now contains the owner’s account/database identifiers for the deployed pilot; these are public resource identifiers, not credentials. A separate installation must use its own account and D1 binding.
 
 Cloudflare builds require actual local dependencies rather than a `node_modules` symlink to another project because standalone file tracing follows real paths. `npm ci` installs the required versions. The pinned compatibility date matches the tested local runtime. Hosting quotas and CPU limits apply; BYOK does not guarantee free hosting.
 
 Native SQLite data is not automatically copied into D1. A later production migration must explicitly export/import the selected data and verify record counts. Local D1 sample accounts used for QA are separate from the native application database.
+
+The pilot is live at **https://whichcvfits.gayanukabulegoda.workers.dev**. See [deployment instructions and hosted verification](docs/DEPLOYMENT.md). Production secrets are independent of local secrets; the local account/database were not uploaded.
+
+To redeploy into the configured owner account after signing in:
+
+```sh
+NEXT_PUBLIC_SITE_URL=https://whichcvfits.gayanukabulegoda.workers.dev npm run deploy:cloudflare
+```
+
+This rebuilds, sanitizes private environment values, and publishes. It does not upgrade the hosting plan. Hosted verification with synthetic data does not establish live AI-provider access or unrestricted free-tier capacity.
 
 ## Verification
 

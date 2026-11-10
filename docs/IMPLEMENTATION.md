@@ -1,6 +1,6 @@
 # Redesign and reliability verification
 
-Implemented locally on 10 November 2026. One repository, `whichcvfits`, contains the frontend, API, migrations, tests, and documentation. The redesign and verification were completed locally before publication. The owner subsequently supplied the GitHub repository and authorized initialization, focused commits, and a push to `main`. No deployment or remote Cloudflare resource operation was performed.
+Implemented locally on 10 November 2026. One repository, `whichcvfits`, contains the frontend, API, migrations, tests, and documentation. The redesign and verification were completed locally before publication. The owner subsequently supplied the GitHub repository and authorized initialization, focused commits, and a push to `main`. No deployment or remote Cloudflare resource operation was performed during that initial phase. The owner later authorized a Cloudflare pilot; see [deployment status](DEPLOYMENT.md) for the subsequent hosted work.
 
 ## Audit findings and resulting behavior
 
@@ -34,7 +34,7 @@ The original native database was checked read-only after implementation: **1 use
 
 Native first access honors `WHICHCVFITS_DB_PATH`, makes a SQLite-consistent backup before pending migrations, then applies versioned SQL migrations. Existing password hashes and record IDs remain compatible. Previous sessions require a new sign-in. Keep both configured secrets stable; changing encryption secrets prevents reading previously encrypted keys.
 
-Local D1 is a separate emulator. All four migrations were applied locally. Native SQLite is not automatically exported to D1. A later production migration must export/import selected records and verify counts before cutover. No remote migration was run.
+Local D1 is a separate emulator. All four migrations were applied locally. Native SQLite is not automatically exported to D1. A later production migration must export/import selected records and verify counts before cutover. No remote migration was run during the initial audit; the later authorized pilot applied these migrations to a newly created production D1 database (see [deployment status](DEPLOYMENT.md)).
 
 ## Verification results
 
@@ -103,7 +103,7 @@ The final dependency audit reports zero advisories for both the full and product
 - Automated accessibility checks supplement manual keyboard/reflow inspection; they do not establish complete WCAG certification. The narrowly reviewed green wordmark contrast exception is retained to honor the exact logo color.
 - Browser emulation covers layout and keyboard behavior; it does not replace physical-device checks of software keyboards, safe areas, assistive technology and every mobile OS version.
 - Production lab performance is local and simulated; no real-user Core Web Vitals or deployed search indexing is claimed.
-- Cloudflare verification is local. Real database IDs, production secrets, the intended domain, plan quotas and an authorized deployment remain operator tasks. Free hosting is not guaranteed.
+- The initial Cloudflare verification was local. The subsequently authorized hosted pilot and its actual checks are recorded in [deployment status](DEPLOYMENT.md). Free hosting capacity is not guaranteed.
 - There is no OCR, password recovery email service, team/ATS integration or automatic native-to-D1 data transfer.
 - Deleting runs removes active stored CV/results; operator backups and external AI provider retention require separate management. The public privacy page explains this data flow.
 
