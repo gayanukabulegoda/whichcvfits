@@ -1,0 +1,57 @@
+{
+  "name": "whichcvfits",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WhichCVFits \u2014 AI-Powered Multi-LLM CV Filtering, Grading & Candidate Ranking Platform",
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "test": "node --experimental-strip-types src/tests/verify-all.ts",
+    "typecheck": "tsc --noEmit",
+    "test:browser": "node scripts/browser-check.mjs",
+    "build:cloudflare": "node scripts/cloudflare.mjs build",
+    "preview:cloudflare": "node scripts/cloudflare.mjs preview",
+    "db:migrate:local": "wrangler d1 migrations apply whichcvfits-db --local",
+    "setup": "node scripts/setup.mjs",
+    "predev": "node scripts/copy-pdf-assets.mjs",
+    "prebuild": "node scripts/copy-pdf-assets.mjs",
+    "qa:server": "node scripts/qa-server.mjs",
+    "format:check": "prettier --check src scripts next.config.ts open-next.config.ts"
+  },
+  "dependencies": {
+    "@opennextjs/cloudflare": "1.20.16",
+    "clsx": "2.1.1",
+    "drizzle-orm": "0.45.2",
+    "fflate": "0.8.3",
+    "lucide-react": "1.31.0",
+    "next": "16.4.5",
+    "pdfjs-dist": "5.4.624",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwind-merge": "3.6.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.1",
+    "@cloudflare/workers-types": "5.20261110.1",
+    "@playwright/test": "1.64.1",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "lighthouse": "13.6.0",
+    "prettier": "3.6.2",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "wrangler": "4.159.0"
+  },
+  "engines": {
+    "node": ">=22.23.2"
+  },
+  "type": "module",
+  "overrides": {
+    "glob": "14.0.2",
+    "minimatch": "11.0.1"
+  }
+}
