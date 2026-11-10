@@ -1,0 +1,10 @@
+ALTER TABLE evaluation_jobs ADD COLUMN failures_json TEXT NOT NULL DEFAULT '[]';
+ALTER TABLE evaluation_jobs ADD COLUMN prompt_version TEXT;
+ALTER TABLE evaluation_jobs ADD COLUMN request_id TEXT;
+ALTER TABLE candidate_evaluations ADD COLUMN metadata_json TEXT;
+CREATE UNIQUE INDEX IF NOT EXISTS evaluation_request ON evaluation_jobs(user_id, request_id);
+CREATE INDEX IF NOT EXISTS evaluation_history ON evaluation_jobs(user_id, created_at);
+CREATE INDEX IF NOT EXISTS candidate_job ON candidate_evaluations(job_id, rank_order);
+CREATE TABLE IF NOT EXISTS rate_limits (bucket TEXT PRIMARY KEY, hits INTEGER NOT NULL, expires_at INTEGER NOT NULL);
+UPDATE users SET theme_palette = 'frontier';
+UPDATE users SET preferred_model = REPLACE(preferred_model, '5.5', '5-5') WHERE preferred_provider = 'anthropic';
