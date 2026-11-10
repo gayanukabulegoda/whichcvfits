@@ -36,13 +36,14 @@ Keep production secrets stable, restrict account access, use two-factor authenti
 
 The owner’s pilot was deployed on 10 November 2026:
 
-- **URL:** https://whichcvfits.gayanukabulegoda.workers.dev
+- **URL:** https://whichcvfits.grbulegoda.com
+- **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `c146312f-756c-4d38-98c0-9a59850cb9ed`
+- **Version:** `ac9f5b72-1ebb-4562-accc-79cbba7b8882`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
-- **Local verification:** 20 regression suites, TypeScript and formatting pass; the production Cloudflare build passes.
+- **Local verification:** 21 regression suites, TypeScript and formatting pass; the production Cloudflare build passes.
 - **Public hosted verification:** all 12 checked pages/SEO endpoints/icons/PDF assets return HTTP 200 with appropriate content types. Canonical URLs and sitemap point to the actual deployed origin.
 - **Hosted application verification:** synthetic signup/login/logout, secure session flags, protected pages, private/no-store responses, onboarding skip, origin rejection, missing-key gating, PDF/DOCX parsing, dialog focus, and 320/390/768/1280px workspace reflow pass. Saved model metadata, cross-owner read/delete isolation and atomic run/candidate deletion are verified using uniquely scoped synthetic fixtures.
 
@@ -52,4 +53,6 @@ The hosted smoke’s final JSON report and public health checks are kept locally
 
 ## Namecheap subdomain
 
-The requested `whichcvfits.grbulegoda.com` hostname uses a Pages gateway so authoritative DNS can stay at Namecheap. See [custom-domain setup](CUSTOM-DOMAIN.md) for the exact CNAME, gateway deployment and cutover verification. The original Worker/database/secrets are retained.
+The active `whichcvfits.grbulegoda.com` hostname uses a Pages gateway so authoritative DNS can stay at Namecheap. See [custom-domain setup](CUSTOM-DOMAIN.md) for the exact CNAME, gateway deployment and cutover verification. The original Worker/database/secrets are retained.
+
+The custom hostname and its Google-issued HTTPS certificate are active. Both Namecheap authoritative nameservers and Google Public DNS return the correct CNAME. The full hosted application smoke and all 12 public/SEO/document-asset checks passed on the custom hostname. The local recursive resolver still cached the earlier NXDOMAIN answer during verification, so the checks used a process-only mapping to Cloudflare’s verified edge with normal TLS certificate validation enabled. No OS DNS settings were changed. Some external caches may need time to expire; no additional Namecheap record is required.

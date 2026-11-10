@@ -20,7 +20,7 @@
     },
   ],
   "vars": {
-    "NEXT_PUBLIC_SITE_URL": "https://whichcvfits.gayanukabulegoda.workers.dev"
+    "NEXT_PUBLIC_SITE_URL": "https://whichcvfits.grbulegoda.com"
   },
   "observability": {
     "enabled": false,

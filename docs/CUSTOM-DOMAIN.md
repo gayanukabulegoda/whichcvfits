@@ -1,6 +1,6 @@
 # Namecheap custom subdomain
 
-Requested hostname: **https://whichcvfits.grbulegoda.com**.
+Primary hostname: **https://whichcvfits.grbulegoda.com**.
 
 The domain's authoritative nameservers remain at Namecheap (`dns1.registrar-servers.com` and `dns2.registrar-servers.com`). The main WhichCVFits application remains the existing Cloudflare Worker with the existing D1 database and secret bindings.
 
@@ -39,23 +39,27 @@ npm run deploy:gateway
 
 This targets the owner account configured in the main `wrangler.jsonc`. The Pages project must be created in that account first. For initial setup, use the Cloudflare dashboard or Pages API to create `whichcvfits-domain` with production branch `main`. The tested Wrangler version can automatically delegate new project creation to Workers when run by an agent; the documented Pages API was used to create this Pages project explicitly.
 
-Before DNS cutover, gateway checks can keep the existing Worker canonical origin:
+Run the full hosted check against the primary hostname:
 
 ```sh
-DEPLOYMENT_SMOKE_URL=https://whichcvfits-domain.pages.dev DEPLOYMENT_EXPECTED_CANONICAL=https://whichcvfits.gayanukabulegoda.workers.dev node scripts/deployment-smoke.mjs
+DEPLOYMENT_SMOKE_URL=https://whichcvfits.grbulegoda.com node scripts/deployment-smoke.mjs
 ```
 
 The hosted checks use synthetic accounts/documents and remove only their uniquely named fixtures. Never point the local mocked-provider browser suite at production. The cleanup path retries its idempotent fixture deletion once, and reports success only after cleanup completes.
 
-After DNS and HTTPS are active, rebuild/redeploy the app with `NEXT_PUBLIC_SITE_URL=https://whichcvfits.grbulegoda.com`, update its public configuration/docs, and run the hosted smoke against the custom hostname. Verify canonical URLs, sitemap, public pages, session cookies, private pages, document assets and owner isolation. Keep the same database and secrets; do not create a replacement database or rotate secrets for a hostname change.
+For future application deployments, rebuild/redeploy with `NEXT_PUBLIC_SITE_URL=https://whichcvfits.grbulegoda.com`, update its public configuration/docs, and run the hosted smoke against the custom hostname. Verify canonical URLs, sitemap, public pages, session cookies, private pages, document assets and owner isolation. Keep the same database and secrets; do not create a replacement database or rotate secrets for a hostname change.
 
 Pages Functions and service calls use Cloudflare runtime quotas. This setup creates no paid subscription; it does not promise unlimited free capacity.
 
 ## Status
 
-The Pages gateway is deployed and its full functional checks passed through the existing Worker, including authentication, private/no-store responses, PDF/DOCX, mobile reflow, historical model metadata and cross-owner read/delete isolation. A transient remote cleanup request failed; its uniquely scoped recovery SQL was retried successfully and removed both synthetic fixture accounts.
+The custom hostname is **active**, with both ownership verification and HTTPS validation active in Cloudflare. Both Namecheap nameservers and Google Public DNS return the expected CNAME. The Worker was rebuilt and published with the custom hostname as its canonical origin (version `ac9f5b72-1ebb-4562-accc-79cbba7b8882`). The database and production secrets were retained.
 
-The custom hostname is registered with Cloudflare. Namecheap CNAME propagation and certificate activation are pending. The live app's canonical origin remains the existing Worker address until the custom hostname is verified.
+The full hosted application smoke passed on the custom hostname: authentication, secure cookies, private/no-store responses, origin rejection, PDF/DOCX, modal focus, mobile reflow, historical model metadata, cross-owner read/delete isolation and atomic deletion. Synthetic fixture cleanup completed. All 12 public pages/SEO endpoints/icons/document assets passed; canonical, Open Graph, structured data, robots and sitemap use the new public origin. Local regression verification passes 21 suites plus TypeScript and formatting.
+
+The local recursive resolver still cached the earlier NXDOMAIN answer during these checks. Authoritative DNS and Google Public DNS were correct, and HTTPS was verified against Cloudflare’s known edge address. Hosted checks used a process-only DNS mapping while keeping normal hostname/TLS certificate validation enabled. No system DNS configuration was changed. A remaining cache elsewhere can take time to refresh; the Namecheap record should be left as configured.
+
+The original Worker address remains available and serves the new canonical URL. The Pages address stays noindex. Real AI-provider calls still require a valid user key and were not made during these checks.
 
 ## References
 

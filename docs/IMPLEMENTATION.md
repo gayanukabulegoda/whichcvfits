@@ -109,4 +109,4 @@ The final dependency audit reports zero advisories for both the full and product
 
 ## Local handoff
 
-See [README](../README.md) for setup and commands. Run `npm ci`, `npm run setup`, then `npm run dev`. Keep `.env.local`, `.dev.vars`, database files and backups private. Set `NEXT_PUBLIC_SITE_URL` before a production build if the intended origin differs from `https://whichcvfits.com`.
+See [README](../README.md) for setup and commands. Run `npm ci`, `npm run setup`, then `npm run dev`. Keep `.env.local`, `.dev.vars`, database files and backups private. Set `NEXT_PUBLIC_SITE_URL` before a production build if the intended origin differs from `https://whichcvfits.grbulegoda.com`.

@@ -1,3 +1,3 @@
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://whichcvfits.com"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://whichcvfits.grbulegoda.com"
 ).replace(/\/$/, "");

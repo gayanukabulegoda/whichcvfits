@@ -57,12 +57,12 @@ Cloudflare builds require actual local dependencies rather than a `node_modules`
 
 Native SQLite data is not automatically copied into D1. A later production migration must explicitly export/import the selected data and verify record counts. Local D1 sample accounts used for QA are separate from the native application database.
 
-The pilot is live at **https://whichcvfits.gayanukabulegoda.workers.dev**. See [deployment instructions and hosted verification](docs/DEPLOYMENT.md). Production secrets are independent of local secrets; the local account/database were not uploaded.
+The site is live at **https://whichcvfits.grbulegoda.com**. See [deployment instructions and hosted verification](docs/DEPLOYMENT.md). Production secrets are independent of local secrets; the local account/database were not uploaded.
 
 To redeploy into the configured owner account after signing in:
 
 ```sh
-NEXT_PUBLIC_SITE_URL=https://whichcvfits.gayanukabulegoda.workers.dev npm run deploy:cloudflare
+NEXT_PUBLIC_SITE_URL=https://whichcvfits.grbulegoda.com npm run deploy:cloudflare
 ```
 
 This rebuilds, sanitizes private environment values, and publishes. It does not upgrade the hosting plan. Hosted verification with synthetic data does not establish live AI-provider access or unrestricted free-tier capacity.
@@ -98,7 +98,7 @@ Screenshots, responsive measurements, and accessibility reports are written to i
 
 ## SEO and privacy
 
-Public pages render their content on the server. Canonicals default to `https://whichcvfits.com`; set `NEXT_PUBLIC_SITE_URL` before building for another origin. Metadata, sitemap, robots rules, social images, icons, semantic headings, and truthful application structured data are included. Authentication and private workspace pages emit `noindex`; server-side authentication protects private content.
+Public pages render their content on the server. Canonicals default to `https://whichcvfits.grbulegoda.com`; set `NEXT_PUBLIC_SITE_URL` before building for another origin. Metadata, sitemap, robots rules, social images, icons, semantic headings, and truthful application structured data are included. Authentication and private workspace pages emit `noindex`; server-side authentication protects private content.
 
 See `/privacy` for the data flow. Keys use server-side AES-GCM encryption, not zero-knowledge storage. Saved successful CV text and results remain until the owner deletes the run. Backups and external provider retention are separate operator/provider responsibilities.
 
@@ -108,4 +108,4 @@ One repository: **whichcvfits**. It contains the web app, API routes, database a
 
 See [implementation and verification report](docs/IMPLEMENTATION.md) for findings, research, measured results and remaining limits.
 
-For the requested Namecheap subdomain, see [custom-domain setup and DNS record](docs/CUSTOM-DOMAIN.md). The existing Worker address remains active during DNS verification.
+For the Namecheap subdomain, see [custom-domain setup and DNS record](docs/CUSTOM-DOMAIN.md). Authoritative DNS remains at Namecheap; the Pages gateway forwards to the existing Worker and database. The original Worker address remains available with the custom-domain canonical URL.
