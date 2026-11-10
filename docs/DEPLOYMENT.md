@@ -49,3 +49,7 @@ The owner’s pilot was deployed on 10 November 2026:
 The original native database/account remain local. Hosted fixtures are deleted after verification. Production is a separate database: the owner should create a new account on the hosted site. No real candidate CVs or provider keys were supplied during these checks, and no AI-provider request was made. These hosted checks passed without an observed CPU-limit failure; representative live-provider batches and broader load remain unverified. No claim of unlimited free capacity is made.
 
 The hosted smoke’s final JSON report and public health checks are kept locally under ignored `artifacts/deployment/`.
+
+## Namecheap subdomain
+
+The requested `whichcvfits.grbulegoda.com` hostname uses a Pages gateway so authoritative DNS can stay at Namecheap. See [custom-domain setup](CUSTOM-DOMAIN.md) for the exact CNAME, gateway deployment and cutover verification. The original Worker/database/secrets are retained.

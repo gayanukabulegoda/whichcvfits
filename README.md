@@ -107,3 +107,5 @@ See `/privacy` for the data flow. Keys use server-side AES-GCM encryption, not z
 One repository: **whichcvfits**. It contains the web app, API routes, database adapters/migrations, tests, and documentation. No frontend/backend repository split is needed.
 
 See [implementation and verification report](docs/IMPLEMENTATION.md) for findings, research, measured results and remaining limits.
+
+For the requested Namecheap subdomain, see [custom-domain setup and DNS record](docs/CUSTOM-DOMAIN.md). The existing Worker address remains active during DNS verification.

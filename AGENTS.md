@@ -9,6 +9,7 @@ Read this file before modifying the project. CLAUDE.md points here.
 - Local builds, isolated tests, and local Worker/D1 emulation are supported.
 - The owner authorized the Cloudflare pilot in the configured account. See docs/DEPLOYMENT.md for its URL and deployment procedure. Production D1 contains user data; use the uniquely scoped deployment smoke fixtures, never the local mocked-provider suite against the live site.
 - Do not upgrade the hosting plan or purchase domains without an explicit owner decision.
+- The requested Namecheap hostname uses the Pages service-binding gateway in gateway/. Preserve the public Host/Origin, session cookies and private cache controls. Do not move the parent domain nameservers. Follow docs/CUSTOM-DOMAIN.md and verify DNS/HTTPS before changing the public canonical origin.
 - Do not stop or replace another development server; use the isolated QA server on another port.
 - No sub-agent or delegation requirement exists.
 
