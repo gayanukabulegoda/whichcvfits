@@ -39,7 +39,7 @@ The owner’s pilot was first deployed on 10 November 2026. The responsive visua
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `af23864e-0149-44a7-8657-6783ed39bd38`
+- **Version:** `7c957432-8880-4886-b4bc-5a416035a551`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -76,3 +76,7 @@ Thirty live public-page/viewport checks through 1920px verify global and section
 ## Left-background removal
 
 Worker version `af23864e-0149-44a7-8657-6783ed39bd38` removes the left page-edge, hero, and left-aligned section-wave layers, retaining the right-side canvas and section details. The production Cloudflare build passes. Twelve read-only live layout checks through 1920px confirm the removed layers are absent, right-side artwork remains visible, and pages have no horizontal overflow. Production data, secrets, DNS, and schema were not changed.
+
+## Plain sample container
+
+Worker version `7c957432-8880-4886-b4bc-5a416035a551` removes both the inner and surrounding decorative relief from the sample-preview container. Its neumorphic surface and page-level right background remain. The production build and six live viewport/interaction checks through 1920px pass. Data, secrets, DNS, and schema were not changed.

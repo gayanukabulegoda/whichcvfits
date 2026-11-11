@@ -107,3 +107,5 @@ The quieter-left update is deployed as Worker version `af23864e-0149-44a7-8657-6
 ## Plain sample-preview container
 
 The owner requested removal of the artwork in the sample preview's parent container. Both the outer hero relief and the inner sample-console relief are removed, along with unused selectors and the sample component's artwork import. The raised/recessed surfaces, content, badges, score gauge, and page-level right-side background remain. Eighteen targeted Chromium/WebKit checks through 1920px confirm the container has no decorative artwork, has no page overflow, and still supports ranking, reset, and candidate selection. TypeScript and formatting pass.
+
+The plain sample container is live on Worker version `7c957432-8880-4886-b4bc-5a416035a551`. The production build and six live viewport/interaction checks through 1920px pass; the artwork is absent from the preview while the page background and sample controls remain.
