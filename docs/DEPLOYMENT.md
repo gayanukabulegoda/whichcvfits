@@ -39,7 +39,7 @@ The owner’s pilot was first deployed on 10 November 2026. The responsive visua
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `6d9fb97c-1640-4047-82ae-41f088500f4a`
+- **Version:** `f26bd016-cc93-4529-9db1-a9f38033a5f5`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -66,3 +66,9 @@ See [design research and verification](UI-REDESIGN.md) for the layouts, test sco
 ## Score and hero refinement
 
 The score-label spacing and desktop hero relief refinement is live on Worker version `6d9fb97c-1640-4047-82ae-41f088500f4a`. The Cloudflare build and public-only environment check pass. Live browser checks confirm at least 4px score-label clearance, the desktop-only artwork, no overflow at 320/390/768/1024/1440/1920px, and working sample controls. The hosted authentication/persistence/ownership/document/modal smoke passes and removes its synthetic fixtures. Existing production data, secrets, DNS, and database schema remain unchanged.
+
+## Application-wide artwork follow-up
+
+Worker version `f26bd016-cc93-4529-9db1-a9f38033a5f5` publishes the shared page-edge artwork, cropped section/dialog relief, desktop left-side hero art, and refined gauge spacing. The Cloudflare build passes; the generated Worker retains only public environment exports, and the 1,599-file scan finds no configured private secret values, native SQLite import, or provider-mock marker.
+
+Thirty live public-page/viewport checks through 1920px verify global and section artwork, responsive bounds, the desktop-only hero layer, 100/100 ring clearance, scrolled lower sections, and sample controls over normal DNS. The hosted authentication/persistence/ownership/document/modal smoke also passes and removes its uniquely scoped synthetic fixtures before reporting success. Existing production data, secret bindings, DNS, and database schema are preserved; no AI-provider call or new resource is involved.
