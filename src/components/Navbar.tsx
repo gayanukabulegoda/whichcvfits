@@ -47,8 +47,9 @@ export default function Navbar({ user }: { user?: SessionUser | null }) {
     <>
       <header className="site-header">
         <div className="container nm-flat header-inner">
-          <Link href={user ? "/dashboard" : "/"} aria-label="WhichCVFits home">
+          <Link href={user ? "/dashboard" : "/"}>
             <BrandLogo showSubtitle />
+            <span className="sr-only">Home</span>
           </Link>
           <nav className="desktop-nav" aria-label="Main navigation">
             {links.map((l) => (
@@ -58,12 +59,13 @@ export default function Navbar({ user }: { user?: SessionUser | null }) {
                 key={l.href}
                 aria-current={path === l.href ? "page" : undefined}
               >
+                <l.icon size={15} />
                 {l.label}
               </Link>
             ))}
             {user ? (
               <>
-                <span className="text-xs muted max-w-32 truncate">
+                <span className="account-pill text-xs muted max-w-32 truncate">
                   {user.name}
                 </span>
                 <button

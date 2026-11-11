@@ -30,7 +30,10 @@ export default function OnboardingPage() {
     }
   }
   return (
-    <main id="main-content" className="container workspace-main settings-width">
+    <main
+      id="main-content"
+      className="container workspace-main settings-width onboarding-main"
+    >
       <div className="page-heading">
         <div>
           <span className="eyebrow">
@@ -42,9 +45,9 @@ export default function OnboardingPage() {
           </p>
         </div>
       </div>
-      <div className="grid md:grid-cols-[1fr_1.3fr] gap-6 items-start">
+      <div className="onboarding-layout grid md:grid-cols-[1fr_1.3fr] gap-6 items-start">
         <div className="stack">
-          <div className="nm-flat card stack">
+          <div className="nm-flat card stack tone-blue">
             <span className="eyebrow">01 · Choose your provider</span>
             {PROVIDER_IDS.map((p) => (
               <button
@@ -53,6 +56,9 @@ export default function OnboardingPage() {
                 aria-pressed={provider === p}
                 onClick={() => setProvider(p)}
               >
+                <span className="provider-symbol tone-blue">
+                  {p === "google" ? "G" : p === "anthropic" ? "A" : "O"}
+                </span>
                 <span className="min-w-0 flex-1">
                   <strong className="text-sm block">
                     {AI_PROVIDERS[p].name}
@@ -77,7 +83,7 @@ export default function OnboardingPage() {
             </p>
           </div>
         </div>
-        <div className="nm-raised card stack">
+        <div className="nm-raised card stack tone-green">
           <div>
             <span className="eyebrow">02 · Connect securely</span>
             <h2 className="mt-3">{AI_PROVIDERS[provider].name}</h2>

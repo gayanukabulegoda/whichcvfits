@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { SITE_URL } from "@/lib/seo";
 import "./globals.css";
+import BrandCanvas from "@/components/BrandCanvas";
 import DialogFocusTracker from "@/components/DialogFocusTracker";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -32,7 +33,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#EFF3FA",
+  themeColor: "#E8EDF5",
   colorScheme: "light",
 };
 export default function RootLayout({
@@ -43,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body>
+        <BrandCanvas />
         <DialogFocusTracker />
         <a href="#main-content" className="skip-link">
           Skip to main content

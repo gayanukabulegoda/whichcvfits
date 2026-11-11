@@ -384,8 +384,8 @@ export default function DashboardPage() {
   ).slice(0, 12);
   const weightTotal = Object.values(weights).reduce((sum, v) => sum + v, 0);
   return (
-    <main id="main-content" className="container workspace-main">
-      <div className="page-heading">
+    <main id="main-content" className="container workspace-main studio-main">
+      <div className="page-heading studio-heading">
         <div>
           <span className="eyebrow">Your evaluation studio</span>
           <h1>Make your next shortlist clearer.</h1>
@@ -456,7 +456,7 @@ export default function DashboardPage() {
           <section
             id="panel-job"
             className={
-              "nm-raised card stack " +
+              "nm-raised card stack config-panel tone-blue " +
               (section !== "job" ? "mobile-hidden" : "")
             }
             aria-labelledby="job-heading"
@@ -505,7 +505,7 @@ export default function DashboardPage() {
                 <textarea
                   id="requirements"
                   className="nm-input text-sm leading-relaxed"
-                  rows={7}
+                  rows={5}
                   placeholder="Paste the responsibilities, required experience, and skills for this role."
                   value={requirements}
                   maxLength={LIMITS.requirementChars}
@@ -524,7 +524,7 @@ export default function DashboardPage() {
                 <textarea
                   id="mandatory"
                   className="nm-input text-sm"
-                  rows={3}
+                  rows={2}
                   placeholder={
                     "One requirement per line, e.g.\nProduction TypeScript experience"
                   }
@@ -608,7 +608,7 @@ export default function DashboardPage() {
           <section
             id="panel-cvs"
             className={
-              "nm-raised card stack " +
+              "nm-raised card stack config-panel tone-green " +
               (section !== "cvs" ? "mobile-hidden" : "")
             }
             aria-labelledby="cv-heading"
@@ -800,10 +800,12 @@ export default function DashboardPage() {
             (section !== "results" ? "mobile-hidden" : "")
           }
         >
-          <div className="nm-flat card stack">
+          <div className="nm-flat card stack results-header">
             <div className="row between wrap">
               <div className="row">
-                <Trophy size={22} className="text-emerald-700" />
+                <span className="icon-tile tone-blue">
+                  <Trophy size={21} />
+                </span>
                 <h2 id="results-heading">Your shortlist</h2>
               </div>
               <Link
@@ -891,7 +893,7 @@ export default function DashboardPage() {
             </div>
           ) : !run ? (
             <div className="nm-inset empty-state">
-              <span className="nm-flat p-5 text-emerald-700">
+              <span className="empty-orb tone-blue">
                 <ScanIcon />
               </span>
               <h3>Good decisions start with clear criteria.</h3>
@@ -1046,6 +1048,7 @@ export default function DashboardPage() {
                       (c.rankOrder === 1 ? "top-candidate" : "")
                     }
                     key={c.id}
+                    data-tier={c.fitTier || "legacy"}
                   >
                     <div className="row between items-start">
                       <div className="min-w-0">
@@ -1055,7 +1058,9 @@ export default function DashboardPage() {
                             className={
                               "badge " +
                               (c.isFilteredIn
-                                ? "badge-green"
+                                ? c.fitTier === "strong_fit"
+                                  ? "badge-blue"
+                                  : "badge-green"
                                 : c.fitTier === "disqualified"
                                   ? "badge-rose"
                                   : "badge-amber")
@@ -1086,7 +1091,7 @@ export default function DashboardPage() {
                         </button>
                       ))}
                     </div>
-                    <div className="row between wrap divider gap-3">
+                    <div className="candidate-actions row between wrap divider gap-3">
                       <label className="row text-xs cursor-pointer min-h-11">
                         <input
                           type="checkbox"

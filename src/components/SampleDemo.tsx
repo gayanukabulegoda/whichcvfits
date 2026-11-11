@@ -48,21 +48,28 @@ export default function SampleDemo() {
     : examples;
   return (
     <div
-      className="nm-raised card stack"
+      className="nm-raised card stack sample-console"
       id="sample-demo"
       style={{ scrollMarginTop: 110 }}
     >
-      <div className="row between wrap">
-        <span className="eyebrow">A shortlist, with context</span>
+      <div className="row between wrap sample-header">
+        <span className="sample-title">
+          <span className="console-dots" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+          A shortlist, with context
+        </span>
         <span className="badge">Sample only</span>
       </div>
-      <div className="nm-inset p-4 text-sm">
+      <div className="nm-inset p-4 text-sm sample-role">
         <div className="font-semibold">Senior full-stack AI engineer</div>
         <p className="muted text-xs mt-1">
           Must-haves: TypeScript, Python, LLM experience
         </p>
       </div>
-      <div className="stack gap-3">
+      <div className="stack gap-3 sample-list">
         {list.map((c, i) => (
           <button
             className="sample-candidate"
@@ -70,7 +77,7 @@ export default function SampleDemo() {
             aria-pressed={selected.name === c.name}
             onClick={() => setSelected(c)}
           >
-            <span className="avatar">
+            <span className={"avatar " + (i % 2 ? "tone-green" : "tone-blue")}>
               {ranked ? "#" + (i + 1) : c.initials}
             </span>
             <span className="min-w-0 flex-1">
@@ -79,7 +86,13 @@ export default function SampleDemo() {
             </span>
             {ranked ? (
               <strong
-                className={c.score >= 70 ? "text-emerald-700" : "text-rose-700"}
+                className={
+                  c.score >= 85
+                    ? "ink-green"
+                    : c.score >= 70
+                      ? "ink-blue"
+                      : "text-rose-700"
+                }
               >
                 {c.score}
               </strong>
@@ -89,14 +102,18 @@ export default function SampleDemo() {
           </button>
         ))}
       </div>
-      <div className="nm-inset p-4 stack gap-3">
+      <div className="nm-inset p-4 stack gap-3 sample-evidence">
         <div className="row between">
           <div>
             <p className="text-sm font-semibold">{selected.name}</p>
             <span
               className={
                 "badge mt-2 " +
-                (selected.score >= 70 ? "badge-green" : "badge-rose")
+                (selected.score >= 85
+                  ? "badge-green"
+                  : selected.score >= 70
+                    ? "badge-blue"
+                    : "badge-rose")
               }
             >
               {selected.tier}
@@ -106,7 +123,7 @@ export default function SampleDemo() {
         </div>
         <p className="text-xs muted">{selected.summary}</p>
         <div className="text-xs text-slate-700">
-          <Quote size={14} className="inline mr-1 text-emerald-700" />
+          <Quote size={14} className="inline mr-1 ink-blue" />
           {selected.quote}
         </div>
       </div>

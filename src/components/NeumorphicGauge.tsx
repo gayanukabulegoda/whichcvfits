@@ -13,7 +13,7 @@ export default function NeumorphicGauge({
   const dimension = size === "lg" ? 112 : size === "sm" ? 64 : 80;
   return (
     <div
-      className="nm-flat-sm relative shrink-0 rounded-full grid place-items-center"
+      className="score-gauge nm-flat-sm relative shrink-0 rounded-full grid place-items-center"
       style={{ width: dimension, height: dimension }}
       role="img"
       aria-label={
@@ -42,7 +42,15 @@ export default function NeumorphicGauge({
           cy="50"
           r="40"
           fill="none"
-          stroke={value >= 70 ? "#10b981" : value >= 50 ? "#a67c25" : "#be4563"}
+          stroke={
+            value >= 85
+              ? "#10b981"
+              : value >= 70
+                ? "#3457b1"
+                : value >= 50
+                  ? "#a67c25"
+                  : "#be4563"
+          }
           strokeWidth="7"
           strokeLinecap="round"
           strokeDasharray="251.33"
@@ -51,10 +59,12 @@ export default function NeumorphicGauge({
       </svg>
       <span
         className="absolute font-bold text-slate-900"
-        style={{ fontSize: size === "lg" ? 26 : 18 }}
+        style={{ fontSize: size === "lg" ? 26 : size === "sm" ? 15 : 18 }}
       >
         {value}
-        <span className="text-[10px] muted">/100</span>
+        <span className="muted" style={{ fontSize: size === "sm" ? 8 : 10 }}>
+          /100
+        </span>
       </span>
     </div>
   );

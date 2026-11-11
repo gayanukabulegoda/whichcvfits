@@ -56,12 +56,12 @@ export default function ModelControls({
             {PROVIDER_IDS.map((p) => (
               <option key={p} value={p}>
                 {AI_PROVIDERS[p].name}
-                {keys.some((k) => k.provider === p && k.isValid)
-                  ? " · connected"
-                  : ""}
               </option>
             ))}
           </select>
+          <small className={key ? "ink-green" : "muted"}>
+            {key ? "Verified key connected" : "Connect a key to evaluate"}
+          </small>
         </div>
         <div className="field">
           <label htmlFor={id + "model"}>Model</label>

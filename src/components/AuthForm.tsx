@@ -2,9 +2,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Eye, EyeOff } from "lucide-react";
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  FileText,
+  Files,
+  ScanLine,
+  ShieldCheck,
+} from "lucide-react";
 import { BrandMark, Wordmark } from "./BrandLogo";
 import Notice from "./Notice";
+import ReliefArt from "./ReliefArt";
 import { post, errorMessage } from "@/lib/client";
 export default function AuthForm({ signup = false }: { signup?: boolean }) {
   const router = useRouter();
@@ -35,7 +44,58 @@ export default function AuthForm({ signup = false }: { signup?: boolean }) {
   }
   return (
     <main id="main-content" className="auth-container">
-      <div className="nm-raised card stack">
+      <aside className="auth-story nm-flat">
+        <ReliefArt className="auth-relief" />
+        <div className="auth-story-copy">
+          <span className="eyebrow">A little structure changes everything</span>
+          <h2>
+            Your next great hire.
+            <br />
+            <span className="ink-blue">A clearer way there.</span>
+          </h2>
+          <p>
+            One focused space for the role, the candidates, and the evidence
+            that connects them.
+          </p>
+        </div>
+        <div className="auth-journey">
+          {[
+            {
+              icon: FileText,
+              title: "Your criteria",
+              text: "Define what a good fit looks like.",
+              tone: "blue",
+            },
+            {
+              icon: Files,
+              title: "Your candidates",
+              text: "Bring your CVs. Keep the context.",
+              tone: "green",
+            },
+            {
+              icon: ScanLine,
+              title: "Your next conversation",
+              text: "A shortlist with evidence behind it.",
+              tone: "blue",
+            },
+          ].map((item) => (
+            <div className="auth-journey-step" key={item.title}>
+              <span className={"icon-tile tone-" + item.tone}>
+                <item.icon size={21} />
+              </span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="auth-story-note">
+          <ShieldCheck size={17} />
+          <span>Your AI key. Your professional judgment.</span>
+        </div>
+      </aside>
+      <div className="nm-raised card stack auth-card">
         <BrandMark className="w-12 h-12" />
         <div>
           <span className="eyebrow mb-3">

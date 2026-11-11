@@ -122,15 +122,17 @@ export default function SettingsPage() {
           Back to studio <ArrowUpRight size={16} />
         </Link>
       </div>
-      <div className="stack gap-7">
+      <div className="settings-grid">
         {error && <Notice tone="error">{error}</Notice>}
         {message && <Notice tone="success">{message}</Notice>}
         <section
-          className="nm-raised card stack"
+          className="nm-raised card stack settings-connections"
           aria-labelledby="keys-heading"
         >
           <div className="row gap-3">
-            <KeyRound size={22} className="text-emerald-700" />
+            <span className="icon-tile tone-blue">
+              <KeyRound size={22} />
+            </span>
             <div>
               <h2 id="keys-heading">Your AI connections</h2>
               <p className="text-sm muted mt-2">
@@ -139,64 +141,68 @@ export default function SettingsPage() {
               </p>
             </div>
           </div>
-          {PROVIDER_IDS.map((p) => {
-            const saved = keys.find((k) => k.provider === p);
-            return (
-              <div className="nm-inset p-4 sm:p-5 stack gap-4" key={p}>
-                <div className="row between wrap">
-                  <div className="row gap-3">
-                    <span className="nm-flat-sm w-10 h-10 grid place-items-center text-emerald-700 font-bold">
-                      {p === "google" ? "G" : p === "anthropic" ? "A" : "O"}
-                    </span>
-                    <div>
-                      <h3>{AI_PROVIDERS[p].name}</h3>
-                      <p className="text-xs muted mt-1">
-                        {saved ? saved.keyHint : "No key connected"}
-                      </p>
+          <div className="provider-grid">
+            {PROVIDER_IDS.map((p) => {
+              const saved = keys.find((k) => k.provider === p);
+              return (
+                <div className="nm-inset provider-card stack gap-4" key={p}>
+                  <div className="row between wrap">
+                    <div className="row gap-3">
+                      <span className="provider-symbol tone-blue">
+                        {p === "google" ? "G" : p === "anthropic" ? "A" : "O"}
+                      </span>
+                      <div>
+                        <h3>{AI_PROVIDERS[p].name}</h3>
+                        <p className="text-xs muted mt-1">
+                          {saved ? saved.keyHint : "No key connected"}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <span
-                    className={"badge " + (saved?.isValid ? "badge-green" : "")}
-                  >
-                    {saved?.isValid ? (
-                      <>
-                        <Check size={12} />
-                        Connected
-                      </>
-                    ) : (
-                      "Not connected"
-                    )}
-                  </span>
-                </div>
-                <div className="row wrap gap-2">
-                  <button
-                    className={saved ? "nm-btn" : "nm-btn-primary"}
-                    onClick={() => setConnecting(p)}
-                  >
-                    <Plus size={15} />
-                    {saved
-                      ? "Replace key"
-                      : "Connect " + AI_PROVIDERS[p].shortName}
-                  </button>
-                  {saved && (
-                    <button
-                      className="nm-btn"
-                      onClick={() =>
-                        setDeleting({
-                          kind: "key",
-                          id: p,
-                          name: AI_PROVIDERS[p].name,
-                        })
+                    <span
+                      className={
+                        "badge " + (saved?.isValid ? "badge-green" : "")
                       }
                     >
-                      <Trash2 size={15} />
-                      Remove
+                      {saved?.isValid ? (
+                        <>
+                          <Check size={12} />
+                          Connected
+                        </>
+                      ) : (
+                        "Not connected"
+                      )}
+                    </span>
+                  </div>
+                  <div className="row wrap gap-2">
+                    <button
+                      className={saved ? "nm-btn" : "nm-btn-primary"}
+                      onClick={() => setConnecting(p)}
+                    >
+                      <Plus size={15} />
+                      {saved
+                        ? "Replace key"
+                        : "Connect " + AI_PROVIDERS[p].shortName}
                     </button>
-                  )}
+                    {saved && (
+                      <button
+                        className="nm-btn"
+                        onClick={() =>
+                          setDeleting({
+                            kind: "key",
+                            id: p,
+                            name: AI_PROVIDERS[p].name,
+                          })
+                        }
+                      >
+                        <Trash2 size={15} />
+                        Remove
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
           <p className="text-xs muted row items-start">
             <ShieldCheck size={17} className="text-emerald-700" />
             <span>
@@ -213,7 +219,9 @@ export default function SettingsPage() {
           aria-labelledby="defaults-heading"
         >
           <div className="row">
-            <SlidersHorizontal size={22} className="text-emerald-700" />
+            <span className="icon-tile tone-blue">
+              <SlidersHorizontal size={22} />
+            </span>
             <h2 id="defaults-heading">Evaluation defaults</h2>
           </div>
           <p className="text-sm muted">
@@ -244,7 +252,9 @@ export default function SettingsPage() {
         >
           <div className="row between wrap">
             <div className="row">
-              <History size={22} className="text-emerald-700" />
+              <span className="icon-tile tone-green">
+                <History size={22} />
+              </span>
               <h2 id="history-heading">Saved evaluations</h2>
             </div>
             <span className="badge">Latest {jobs.length} runs</span>

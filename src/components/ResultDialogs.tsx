@@ -23,7 +23,12 @@ export function CandidateDetails({
         <div className="min-w-0">
           <span
             className={
-              "badge " + (c.isFilteredIn ? "badge-green" : "badge-rose")
+              "badge " +
+              (c.isFilteredIn
+                ? c.fitTier === "strong_fit"
+                  ? "badge-blue"
+                  : "badge-green"
+                : "badge-rose")
             }
           >
             {c.fitTier ? FIT_LABELS[c.fitTier] : "Legacy result"}
@@ -178,16 +183,22 @@ export function CompareCandidates({
     >
       {candidates.map((c) => (
         <article className="nm-flat card stack gap-4" key={c.id}>
-          <span className="badge self-start">Rank #{c.rankOrder}</span>
-          <NeumorphicGauge score={c.overallScore} />
-          <div>
-            <h3>{c.candidateName}</h3>
-            <p className="text-xs muted mt-2">{c.candidateRole}</p>
+          <div className="comparison-heading">
+            <div>
+              <span className="badge mb-3">Rank #{c.rankOrder}</span>
+              <h3>{c.candidateName}</h3>
+              <p className="text-xs muted mt-2">{c.candidateRole}</p>
+            </div>
+            <NeumorphicGauge score={c.overallScore} size="sm" />
           </div>
           <span
             className={
               "badge self-start " +
-              (c.isFilteredIn ? "badge-green" : "badge-rose")
+              (c.isFilteredIn
+                ? c.fitTier === "strong_fit"
+                  ? "badge-blue"
+                  : "badge-green"
+                : "badge-rose")
             }
           >
             {c.fitTier ? FIT_LABELS[c.fitTier] : "Legacy result"}
