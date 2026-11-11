@@ -2,6 +2,8 @@
 
 Implemented locally on 10 November 2026. One repository, `whichcvfits`, contains the frontend, API, migrations, tests, and documentation. The redesign and verification were completed locally before publication. The owner subsequently supplied the GitHub repository and authorized initialization, focused commits, and a push to `main`. No deployment or remote Cloudflare resource operation was performed during that initial phase. The owner later authorized a Cloudflare pilot; see [deployment status](DEPLOYMENT.md) for the subsequent hosted work.
 
+The additional visual redesign on 11 November 2026 has its own [design research and verification record](UI-REDESIGN.md). The measurements below describe the initial overhaul; consult the newer record for the current layout and measurements.
+
 ## Audit findings and resulting behavior
 
 | Area                 | Confirmed problem                                                               | Implemented behavior                                                                                                                                                                             |

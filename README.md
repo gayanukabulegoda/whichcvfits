@@ -86,6 +86,7 @@ Browser verification uses an isolated QA server with provider responses mocked *
 node scripts/qa-server.mjs
 # Second terminal
 npm run test:browser
+npm run test:design
 ```
 
 For iterative UI QA, use `QA_PORT=3108 node scripts/qa-server.mjs --dev` and `QA_BASE_URL=http://127.0.0.1:3108 npm run test:browser`. The development QA server has its own `.next-qa` directory. Browser binaries must already be available to Playwright. The QA preload refuses to run without an isolated temporary database. It is never imported by application routes or packaged into the Worker.
@@ -94,7 +95,7 @@ Run `node scripts/performance.mjs` against the production QA server for local Li
 
 The browser suite records an unavailable browser runtime separately. Use `QA_REQUIRE_ALL_BROWSERS=1` to fail when any browser engine cannot launch. The 320px scenarios cover the reflow width equivalent to 400% zoom at 1280px. Physical-device keyboards and assistive technologies still need device testing.
 
-Screenshots, responsive measurements, and accessibility reports are written to ignored `artifacts/qa`. Live Google/Anthropic/OpenAI smoke tests require valid user-supplied keys and may incur provider charges; they were not used for automated verification.
+Screenshots, responsive measurements, and accessibility reports are written to ignored `artifacts/qa`. The design suite adds screenshots and boundary checks for every dialog, three-candidate comparison, short viewports, and tablet/desktop navigation under ignored `artifacts/redesign`; it accepts only the isolated loopback QA ports. See [the design notes](docs/UI-REDESIGN.md) for research and layout decisions. Live Google/Anthropic/OpenAI smoke tests require valid user-supplied keys and may incur provider charges; they were not used for automated verification.
 
 ## SEO and privacy
 

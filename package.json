@@ -10,6 +10,7 @@
     "test": "node --experimental-strip-types src/tests/verify-all.ts",
     "typecheck": "tsc --noEmit",
     "test:browser": "node scripts/browser-check.mjs",
+    "test:design": "node scripts/design-check.mjs",
     "build:cloudflare": "node scripts/cloudflare.mjs build",
     "preview:cloudflare": "node scripts/cloudflare.mjs preview",
     "db:migrate:local": "wrangler d1 migrations apply whichcvfits-db --local",

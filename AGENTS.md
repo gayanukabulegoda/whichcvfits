@@ -22,11 +22,13 @@ Always use the shared Wordmark/BrandLogo:
 - WhichCV: **#0F172A**.
 - Fits: **#10B981**.
 - Preserve the W-check icon, including its indigo/navy background and emerald check.
-- Light porcelain canvas **#EFF3FA**, elevated surface **#F5F8FF**, white highlights, restrained navy and emerald accents.
+- Light blue porcelain canvas **#E8EDF5**, elevated gradient **#F1F5FB → #E5ECF5**, white highlights, balanced navy/blue and emerald accents.
+- Keep exact wordmark colors above. Use tonal blue **#3457B1 / #253D83** for navigation, fields, and primary actions; emerald for CVs, evidence, and positive outcomes. Use darker emerald **#08745C** for readable small text. Do not use bright logo green for ordinary body text.
 - No palette switching or dark page theme. Semantic warning/error colors are allowed for status.
 - Use the shared light neumorphic classes and components in globals.css. Avoid layering unnecessary cards inside cards.
 - Visible focus, readable contrast, accessible names, and 44px touch controls matter more than shadow effects.
 - Background effects must remain bounded and respect reduced motion.
+- Use BrandCanvas/ReliefArt for static CSS/SVG relief artwork. Keep decorations behind opaque content, hidden from assistive technology, and free of animation loops, raster downloads, or heavy filters. See docs/UI-REDESIGN.md for the design rationale and verification.
 
 ## Architecture
 
@@ -68,6 +70,7 @@ The asynchronous SQL repository uses build-selected adapters:
 - Never accept binary garbage, silently truncate, or fabricate placeholder extraction. Show per-file failures and offer paste/edit recovery.
 - The landing sample is clearly illustrative, account-free, and makes no AI requests.
 - Desktop >=1024px: 5/7 configuration/results split. Tablet: stacked workspace and two-column results. Mobile <768px: one top step switcher and one safe-area-aware bottom action.
+- The mobile step switcher must be hidden at >=768px; generic segmented-control styles must not override that rule. Tablet landing content uses a wide introduction and two-column sample, rather than squeezing the desktop hero. Settings has three provider cards and two lower sections on desktop, stacked on phones.
 - Preserve readiness, circular match gauges, skill spotlight, comparison (max three), safe CSV export, and history.
 - All popups use Dialog with native modal semantics, Escape, focus containment/restoration, and scrollable content.
 
@@ -87,6 +90,7 @@ Run npm ci then npm run setup. Do not copy dependencies from another project.
 
 - npm test
 - npm run typecheck
+- npm run test:design (while the isolated production QA server is running; never target production)
 - npm run build
 - npm run db:migrate:local
 - npm run build:cloudflare
