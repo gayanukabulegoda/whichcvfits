@@ -34,12 +34,12 @@ Keep production secrets stable, restrict account access, use two-factor authenti
 
 ## Current status
 
-The owner’s pilot was deployed on 10 November 2026:
+The owner’s pilot was first deployed on 10 November 2026. The responsive visual refresh was published on 11 November 2026:
 
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `ac9f5b72-1ebb-4562-accc-79cbba7b8882`
+- **Version:** `cf85b695-3f70-4791-a15d-0b5f5765de3b`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -55,4 +55,10 @@ The hosted smoke’s final JSON report and public health checks are kept locally
 
 The active `whichcvfits.grbulegoda.com` hostname uses a Pages gateway so authoritative DNS can stay at Namecheap. See [custom-domain setup](CUSTOM-DOMAIN.md) for the exact CNAME, gateway deployment and cutover verification. The original Worker/database/secrets are retained.
 
-The custom hostname and its Google-issued HTTPS certificate are active. Both Namecheap authoritative nameservers and Google Public DNS return the correct CNAME. The full hosted application smoke and all 12 public/SEO/document-asset checks passed on the custom hostname. The local recursive resolver still cached the earlier NXDOMAIN answer during verification, so the checks used a process-only mapping to Cloudflare’s verified edge with normal TLS certificate validation enabled. No OS DNS settings were changed. Some external caches may need time to expire; no additional Namecheap record is required.
+The custom hostname and its Google-issued HTTPS certificate are active. Both Namecheap authoritative nameservers and Google Public DNS return the correct CNAME. The full hosted application smoke and all 12 public/SEO/document-asset checks passed on the custom hostname. Initial cutover checks used a process-only DNS mapping because the local resolver cached the previous NXDOMAIN response. By the 11 November visual refresh, ordinary DNS and HTTPS resolved successfully without an override or OS DNS change. No additional Namecheap record is required.
+
+## 11 November visual refresh
+
+The responsive neumorphic redesign is live on Worker version `cf85b695-3f70-4791-a15d-0b5f5765de3b`. The Cloudflare build, public-only environment artifact scan, hosted synthetic account/persistence/ownership smoke, all 12 public/SEO/document-asset checks, and live 320/390/768/1440px visual checks pass over normal DNS and HTTPS. Both production secret bindings remain configured. Synthetic smoke fixtures were removed; no AI-provider call, schema migration, new resource, plan upgrade, or DNS change was made.
+
+See [design research and verification](UI-REDESIGN.md) for the layouts, test scope, Lighthouse lab results, and remaining verification limits.

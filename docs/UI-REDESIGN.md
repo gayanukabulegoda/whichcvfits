@@ -65,3 +65,11 @@ Lighthouse 13.6 on the isolated production server, using the script’s mobile/d
 | /privacy | mobile | 100 | 100 | 100 | 96 | 0.75s | 72ms | 0 |
 
 All four profiles score 100 for performance, SEO, and best practices, with zero measured layout shift. The remaining scored Lighthouse accessibility finding is the exact emerald wordmark; the reviewed logotype exception does not apply to ordinary content or controls.
+
+### Hosted release
+
+Published on 11 November 2026 to [whichcvfits.grbulegoda.com](https://whichcvfits.grbulegoda.com), Worker version `cf85b695-3f70-4791-a15d-0b5f5765de3b`. The Cloudflare production build and upload pass. The 1,599 generated code/config files were scanned without finding configured private secret values, native SQLite imports, or the isolated provider-mock marker; generated Worker environment exports contain only public variables. Both existing production secret bindings remain present.
+
+Hosted signup/login/logout, secure sessions, protected pages, origin checks, verified-key gating, D1 persistence, saved-model/legacy metadata, cross-owner read/delete isolation, atomic deletion, local PDF/DOCX/Unicode processing, dialog focus, and 320/390/768/1280px workspace reflow pass. The smoke test removed its uniquely scoped synthetic accounts and fixtures before reporting success. No live AI-provider call was made.
+
+All 12 public/SEO/icon/document-asset checks pass over ordinary DNS and HTTPS. Live browser screenshots additionally confirm the final canvas and exact wordmark colors, no page overflow at 320/390/768/1440px, and the account-free sample interaction. No browser DNS override, DNS record update, new hosting resource, plan upgrade, or production schema migration was needed for this refresh. The existing database and secret values were preserved.
