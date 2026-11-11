@@ -103,3 +103,7 @@ The application-wide artwork follow-up is live on Worker version `f26bd016-cc93-
 At the owner's request, the left page-edge composition and desktop hero decoration have been removed, along with the left-aligned workflow/FAQ waves and their unused CSS. The workflow now uses the existing right-corner ring treatment. The right-side canvas, sample backdrop, section/dialog corners, brand colors, and gauge spacing are retained. TypeScript, formatting, and 20 targeted Chromium/WebKit layout checks through 1920px pass; this background-only removal does not change account, document, evaluation, or persistence behavior.
 
 The quieter-left update is deployed as Worker version `af23864e-0149-44a7-8657-6783ed39bd38`. The production build and 12 read-only live layout checks through 1920px pass. The owner’s preference for right-side page/hero art is recorded in AGENTS.md.
+
+## Plain sample-preview container
+
+The owner requested removal of the artwork in the sample preview's parent container. Both the outer hero relief and the inner sample-console relief are removed, along with unused selectors and the sample component's artwork import. The raised/recessed surfaces, content, badges, score gauge, and page-level right-side background remain. Eighteen targeted Chromium/WebKit checks through 1920px confirm the container has no decorative artwork, has no page overflow, and still supports ranking, reset, and candidate selection. TypeScript and formatting pass.

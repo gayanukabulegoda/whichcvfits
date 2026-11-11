@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { ArrowDownWideNarrow, Check, Quote, RotateCcw } from "lucide-react";
 import NeumorphicGauge from "./NeumorphicGauge";
-import ReliefArt from "./ReliefArt";
 const examples = [
   {
     name: "Elena Rostova",
@@ -53,7 +52,6 @@ export default function SampleDemo() {
       id="sample-demo"
       style={{ scrollMarginTop: 110 }}
     >
-      <ReliefArt className="sample-relief" />
       <div className="row between wrap sample-header">
         <span className="sample-title">
           <span className="console-dots" aria-hidden="true">

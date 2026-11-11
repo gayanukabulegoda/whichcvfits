@@ -112,7 +112,6 @@ export default function HomePage() {
             </div>
           </div>
           <div className="hero-visual">
-            <ReliefArt className="hero-relief" />
             <div className="floating-caption caption-blue">
               <span className="caption-dot" /> Made for thoughtful hiring
             </div>
