@@ -39,7 +39,7 @@ The owner’s pilot was first deployed on 10 November 2026. The responsive visua
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `cf85b695-3f70-4791-a15d-0b5f5765de3b`
+- **Version:** `6d9fb97c-1640-4047-82ae-41f088500f4a`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -62,3 +62,7 @@ The custom hostname and its Google-issued HTTPS certificate are active. Both Nam
 The responsive neumorphic redesign is live on Worker version `cf85b695-3f70-4791-a15d-0b5f5765de3b`. The Cloudflare build, public-only environment artifact scan, hosted synthetic account/persistence/ownership smoke, all 12 public/SEO/document-asset checks, and live 320/390/768/1440px visual checks pass over normal DNS and HTTPS. Both production secret bindings remain configured. Synthetic smoke fixtures were removed; no AI-provider call, schema migration, new resource, plan upgrade, or DNS change was made.
 
 See [design research and verification](UI-REDESIGN.md) for the layouts, test scope, Lighthouse lab results, and remaining verification limits.
+
+## Score and hero refinement
+
+The score-label spacing and desktop hero relief refinement is live on Worker version `6d9fb97c-1640-4047-82ae-41f088500f4a`. The Cloudflare build and public-only environment check pass. Live browser checks confirm at least 4px score-label clearance, the desktop-only artwork, no overflow at 320/390/768/1024/1440/1920px, and working sample controls. The hosted authentication/persistence/ownership/document/modal smoke passes and removes its synthetic fixtures. Existing production data, secrets, DNS, and database schema remain unchanged.
