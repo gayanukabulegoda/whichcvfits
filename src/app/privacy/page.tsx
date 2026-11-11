@@ -1,3 +1,4 @@
+import ReliefArt from "@/components/ReliefArt";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -13,7 +14,8 @@ export default function PrivacyPage() {
     <>
       <Navbar />
       <main id="main-content" className="container section prose">
-        <div className="nm-raised card stack">
+        <div className="nm-raised card stack art-surface">
+          <ReliefArt variant="rings" className="section-relief" />
           <span className="eyebrow">Your data, explained</span>
           <h1>Know what goes where.</h1>
           <p>

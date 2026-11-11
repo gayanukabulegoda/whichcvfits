@@ -1,3 +1,4 @@
+import ReliefArt from "@/components/ReliefArt";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -14,7 +15,8 @@ export default function HowItWorks() {
     <>
       <Navbar />
       <main id="main-content" className="container section prose">
-        <div className="nm-raised card stack">
+        <div className="nm-raised card stack art-surface">
+          <ReliefArt variant="rings" className="section-relief" />
           <span className="eyebrow">A practical guide</span>
           <h1>A shortlist you can understand.</h1>
           <p>

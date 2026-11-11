@@ -62,6 +62,7 @@ export default function HomePage() {
         />
         <section className="container hero">
           <div className="hero-intro">
+            <ReliefArt className="hero-intro-relief" />
             <span className="hero-kicker">
               <span className="status-dot" /> A clearer way to shortlist{" "}
               <span className="kicker-line" />
@@ -154,9 +155,13 @@ export default function HomePage() {
           <div className="feature-grid">
             {steps.map((item) => (
               <article
-                className={"nm-flat feature-card tone-" + item.tone}
+                className={"nm-flat feature-card art-surface tone-" + item.tone}
                 key={item.num}
               >
+                <ReliefArt
+                  variant="rings"
+                  className="section-relief section-relief-small"
+                />
                 <div className="row between">
                   <span className={"icon-tile tone-" + item.tone}>
                     <item.icon size={23} />
@@ -171,7 +176,11 @@ export default function HomePage() {
           </div>
         </section>
         <section className="container section">
-          <div className="workflow-panel nm-raised">
+          <div className="workflow-panel nm-raised art-surface">
+            <ReliefArt
+              variant="waves"
+              className="section-relief section-relief-waves"
+            />
             <div className="workflow-intro">
               <span className="eyebrow">Your AI. Your point of view.</span>
               <h2>
@@ -226,7 +235,11 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section className="container section faq-layout">
+        <section className="container section faq-layout art-surface">
+          <ReliefArt
+            variant="waves"
+            className="section-relief section-relief-waves faq-relief"
+          />
           <div className="faq-intro">
             <span className="eyebrow">Before you begin</span>
             <h2>

@@ -95,7 +95,8 @@ export default function AuthForm({ signup = false }: { signup?: boolean }) {
           <span>Your AI key. Your professional judgment.</span>
         </div>
       </aside>
-      <div className="nm-raised card stack auth-card">
+      <div className="nm-raised card stack auth-card art-surface">
+        <ReliefArt variant="rings" className="section-relief" />
         <BrandMark className="w-12 h-12" />
         <div>
           <span className="eyebrow mb-3">

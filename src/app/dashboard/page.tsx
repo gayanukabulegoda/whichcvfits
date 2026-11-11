@@ -1,4 +1,5 @@
 "use client";
+import ReliefArt from "@/components/ReliefArt";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -385,7 +386,8 @@ export default function DashboardPage() {
   const weightTotal = Object.values(weights).reduce((sum, v) => sum + v, 0);
   return (
     <main id="main-content" className="container workspace-main studio-main">
-      <div className="page-heading studio-heading">
+      <div className="page-heading studio-heading art-surface">
+        <ReliefArt variant="rings" className="section-relief" />
         <div>
           <span className="eyebrow">Your evaluation studio</span>
           <h1>Make your next shortlist clearer.</h1>
@@ -456,11 +458,12 @@ export default function DashboardPage() {
           <section
             id="panel-job"
             className={
-              "nm-raised card stack config-panel tone-blue " +
+              "nm-raised card stack config-panel art-surface tone-blue " +
               (section !== "job" ? "mobile-hidden" : "")
             }
             aria-labelledby="job-heading"
           >
+            <ReliefArt variant="rings" className="section-relief" />
             <div className="card-title mb-0">
               <span className="number nm-inset">1</span>
               <div>
@@ -608,11 +611,12 @@ export default function DashboardPage() {
           <section
             id="panel-cvs"
             className={
-              "nm-raised card stack config-panel tone-green " +
+              "nm-raised card stack config-panel art-surface tone-green " +
               (section !== "cvs" ? "mobile-hidden" : "")
             }
             aria-labelledby="cv-heading"
           >
+            <ReliefArt variant="rings" className="section-relief" />
             <div className="card-title mb-0">
               <span className="number nm-inset">2</span>
               <div>
@@ -800,7 +804,8 @@ export default function DashboardPage() {
             (section !== "results" ? "mobile-hidden" : "")
           }
         >
-          <div className="nm-flat card stack results-header">
+          <div className="nm-flat card stack results-header art-surface">
+            <ReliefArt variant="rings" className="section-relief" />
             <div className="row between wrap">
               <div className="row">
                 <span className="icon-tile tone-blue">

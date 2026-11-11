@@ -2,6 +2,7 @@
 import { useLayoutEffect, useId, useRef, type ReactNode } from "react";
 import { dialogInvokingControl } from "./DialogFocusTracker";
 import { X } from "lucide-react";
+import ReliefArt from "./ReliefArt";
 export default function Dialog({
   open,
   onClose,
@@ -80,7 +81,8 @@ export default function Dialog({
         }
       }}
     >
-      <div className="dialog-header">
+      <div className="dialog-header art-surface">
+        <ReliefArt variant="rings" className="section-relief" />
         <div>
           <h2 id={titleId}>{title}</h2>
           {description && <p id={descId}>{description}</p>}

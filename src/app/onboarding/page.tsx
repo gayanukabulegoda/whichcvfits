@@ -1,4 +1,5 @@
 "use client";
+import ReliefArt from "@/components/ReliefArt";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Check, ShieldCheck } from "lucide-react";
@@ -34,7 +35,8 @@ export default function OnboardingPage() {
       id="main-content"
       className="container workspace-main settings-width onboarding-main"
     >
-      <div className="page-heading">
+      <div className="page-heading art-surface">
+        <ReliefArt variant="rings" className="section-relief" />
         <div>
           <span className="eyebrow">
             One optional step before your first review
@@ -47,7 +49,8 @@ export default function OnboardingPage() {
       </div>
       <div className="onboarding-layout grid md:grid-cols-[1fr_1.3fr] gap-6 items-start">
         <div className="stack">
-          <div className="nm-flat card stack tone-blue">
+          <div className="nm-flat card stack tone-blue art-surface">
+            <ReliefArt variant="rings" className="section-relief" />
             <span className="eyebrow">01 · Choose your provider</span>
             {PROVIDER_IDS.map((p) => (
               <button
@@ -83,7 +86,8 @@ export default function OnboardingPage() {
             </p>
           </div>
         </div>
-        <div className="nm-raised card stack tone-green">
+        <div className="nm-raised card stack tone-green art-surface">
+          <ReliefArt variant="rings" className="section-relief" />
           <div>
             <span className="eyebrow">02 · Connect securely</span>
             <h2 className="mt-3">{AI_PROVIDERS[provider].name}</h2>

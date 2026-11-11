@@ -1,3 +1,4 @@
+import ReliefArt from "@/components/ReliefArt";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 export default function NotFound() {
@@ -5,7 +6,8 @@ export default function NotFound() {
     <>
       <Navbar />
       <main id="main-content" className="container section max-w-xl">
-        <div className="nm-raised card stack text-center items-center">
+        <div className="nm-raised card stack text-center items-center art-surface">
+          <ReliefArt variant="rings" className="section-relief" />
           <span className="eyebrow">404</span>
           <h1>This page is out of the shortlist.</h1>
           <p className="muted">

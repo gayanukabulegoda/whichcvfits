@@ -1,4 +1,5 @@
 "use client";
+import ReliefArt from "@/components/ReliefArt";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
@@ -110,7 +111,8 @@ export default function SettingsPage() {
   }
   return (
     <main id="main-content" className="container workspace-main settings-width">
-      <div className="page-heading">
+      <div className="page-heading art-surface">
+        <ReliefArt variant="rings" className="section-relief" />
         <div>
           <span className="eyebrow">Make the workspace yours</span>
           <h1>Settings & history</h1>
@@ -126,9 +128,10 @@ export default function SettingsPage() {
         {error && <Notice tone="error">{error}</Notice>}
         {message && <Notice tone="success">{message}</Notice>}
         <section
-          className="nm-raised card stack settings-connections"
+          className="nm-raised card stack settings-connections art-surface"
           aria-labelledby="keys-heading"
         >
+          <ReliefArt variant="rings" className="section-relief" />
           <div className="row gap-3">
             <span className="icon-tile tone-blue">
               <KeyRound size={22} />
@@ -215,9 +218,10 @@ export default function SettingsPage() {
           </p>
         </section>
         <section
-          className="nm-raised card stack"
+          className="nm-raised card stack art-surface"
           aria-labelledby="defaults-heading"
         >
+          <ReliefArt variant="rings" className="section-relief" />
           <div className="row">
             <span className="icon-tile tone-blue">
               <SlidersHorizontal size={22} />
@@ -246,10 +250,11 @@ export default function SettingsPage() {
         </section>
         <section
           id="history"
-          className="nm-raised card stack"
+          className="nm-raised card stack art-surface"
           style={{ scrollMarginTop: 110 }}
           aria-labelledby="history-heading"
         >
+          <ReliefArt variant="rings" className="section-relief" />
           <div className="row between wrap">
             <div className="row">
               <span className="icon-tile tone-green">
