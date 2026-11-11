@@ -4,7 +4,6 @@ export default function BrandCanvas() {
     <div className="brand-canvas" aria-hidden="true">
       <div className="canvas-glow" />
       <ReliefArt className="canvas-relief" />
-      <ReliefArt className="canvas-left-relief" />
     </div>
   );
 }
