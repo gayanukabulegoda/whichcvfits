@@ -11,10 +11,12 @@ export default function NeumorphicGauge({
     ? Math.min(100, Math.max(0, Math.round(score)))
     : 0;
   const dimension = size === "lg" ? 112 : size === "sm" ? 64 : 80;
+  const circumference = 2 * Math.PI * 43;
   return (
     <div
       className="score-gauge nm-flat-sm relative shrink-0 rounded-full grid place-items-center"
       style={{ width: dimension, height: dimension }}
+      data-size={size}
       role="img"
       aria-label={
         value +
@@ -23,8 +25,8 @@ export default function NeumorphicGauge({
       }
     >
       <svg
-        width={dimension - 10}
-        height={dimension - 10}
+        width={dimension - 4}
+        height={dimension - 4}
         viewBox="0 0 100 100"
         aria-hidden="true"
         className="-rotate-90"
@@ -32,15 +34,15 @@ export default function NeumorphicGauge({
         <circle
           cx="50"
           cy="50"
-          r="40"
+          r="43"
           fill="none"
           stroke="#d7e0ed"
-          strokeWidth="7"
+          strokeWidth="6"
         />
         <circle
           cx="50"
           cy="50"
-          r="40"
+          r="43"
           fill="none"
           stroke={
             value >= 85
@@ -51,20 +53,15 @@ export default function NeumorphicGauge({
                   ? "#a67c25"
                   : "#be4563"
           }
-          strokeWidth="7"
+          strokeWidth="6"
           strokeLinecap="round"
-          strokeDasharray="251.33"
-          strokeDashoffset={251.33 * (1 - value / 100)}
+          strokeDasharray={circumference}
+          strokeDashoffset={circumference * (1 - value / 100)}
         />
       </svg>
-      <span
-        className="absolute font-bold text-slate-900"
-        style={{ fontSize: size === "lg" ? 26 : size === "sm" ? 15 : 18 }}
-      >
-        {value}
-        <span className="muted" style={{ fontSize: size === "sm" ? 8 : 10 }}>
-          /100
-        </span>
+      <span className="score-gauge-label" aria-hidden="true">
+        <span className="score-gauge-value">{value}</span>
+        <span className="score-gauge-total">/100</span>
       </span>
     </div>
   );

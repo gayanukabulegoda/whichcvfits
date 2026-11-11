@@ -72,6 +72,7 @@ The asynchronous SQL repository uses build-selected adapters:
 - Desktop >=1024px: 5/7 configuration/results split. Tablet: stacked workspace and two-column results. Mobile <768px: one top step switcher and one safe-area-aware bottom action.
 - The mobile step switcher must be hidden at >=768px; generic segmented-control styles must not override that rule. Tablet landing content uses a wide introduction and two-column sample, rather than squeezing the desktop hero. Settings has three provider cards and two lower sections on desktop, stacked on phones.
 - Preserve readiness, circular match gauges, skill spotlight, comparison (max three), safe CSV export, and history.
+- Gauge labels stack the score above /100 to preserve space inside the progress ring, including 100/100. Check all three sizes with npm run test:gauges on the isolated QA server; the measured label bounds must clear the inner curve by at least 4px.
 - All popups use Dialog with native modal semantics, Escape, focus containment/restoration, and scrollable content.
 
 ## Security and setup

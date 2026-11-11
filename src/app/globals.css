@@ -1023,6 +1023,40 @@ button.chip {
   background: linear-gradient(145deg, #f5f8fd, #e2e9f4);
   border: 1px solid #fff;
 }
+.score-gauge-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.score-gauge-value {
+  font-size: 20px;
+  font-weight: 750;
+}
+.score-gauge-total {
+  font-size: 9px;
+  line-height: 1.1;
+  font-weight: 650;
+  color: var(--text-muted);
+}
+.score-gauge[data-size="sm"] .score-gauge-value {
+  font-size: 15px;
+}
+.score-gauge[data-size="lg"] .score-gauge-value {
+  font-size: 26px;
+}
+.score-gauge[data-size="lg"] .score-gauge-total {
+  font-size: 11px;
+}
+.score-gauge[data-size="lg"] .score-gauge-label {
+  gap: 2px;
+}
 .candidate-card[data-tier="strong_fit"] {
   border-left-color: #3457b1;
 }
@@ -1252,6 +1286,15 @@ button.chip {
   z-index: 1;
   border-radius: 25px;
   gap: 0.8rem;
+  overflow: clip;
+  isolation: isolate;
+}
+.sample-relief {
+  display: none;
+}
+.sample-console > :not(.sample-relief) {
+  position: relative;
+  z-index: 1;
 }
 .sample-title {
   display: flex;
@@ -1718,6 +1761,68 @@ details[open] > :not(summary) {
   }
 }
 @media (min-width: 1024px) {
+  .hero-visual {
+    padding: 2rem 2.5rem 2rem 1rem;
+    border-radius: 40px;
+  }
+  .hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0.6rem 0.1rem;
+    z-index: -2;
+    border: 1px solid #ffffffcf;
+    border-radius: 38px;
+    background: linear-gradient(140deg, #dce6f5, #e0ede8);
+    box-shadow:
+      inset 5px 5px 12px #b7c6dc9c,
+      inset -5px -5px 12px #ffffffd9;
+  }
+  .hero-relief {
+    opacity: 1;
+  }
+  .hero-relief > .orbit-outer {
+    width: 115%;
+    right: -48%;
+    top: -10%;
+  }
+  .hero-relief > .relief-waves {
+    width: 125%;
+    left: -10%;
+    bottom: -4%;
+  }
+  .hero-relief .relief-core span + span {
+    background: linear-gradient(135deg, #7695e5, #3457b1);
+  }
+  .hero-relief > .pebble-green {
+    right: 0;
+    bottom: 17%;
+  }
+  .sample-console {
+    background: linear-gradient(140deg, #eef3fb, #e4edf3);
+  }
+  .sample-relief {
+    display: block;
+    z-index: 0;
+    width: 470px;
+    height: 640px;
+    top: -135px;
+    right: -260px;
+    opacity: 0.32;
+  }
+  .sample-relief > .orbit-outer {
+    width: 100%;
+    right: -8%;
+    top: 0;
+  }
+  .sample-relief > .relief-pebble,
+  .sample-relief > .relief-dot-grid {
+    display: none;
+  }
+  .sample-relief > .relief-waves {
+    width: 120%;
+    left: -12%;
+    bottom: -1%;
+  }
   .prose-sections {
     columns: 2;
     column-gap: 2rem;
