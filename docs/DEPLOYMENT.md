@@ -39,7 +39,7 @@ The owner’s pilot was first deployed on 10 November 2026. The responsive visua
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `f26bd016-cc93-4529-9db1-a9f38033a5f5`
+- **Version:** `af23864e-0149-44a7-8657-6783ed39bd38`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -72,3 +72,7 @@ The score-label spacing and desktop hero relief refinement is live on Worker ver
 Worker version `f26bd016-cc93-4529-9db1-a9f38033a5f5` publishes the shared page-edge artwork, cropped section/dialog relief, desktop left-side hero art, and refined gauge spacing. The Cloudflare build passes; the generated Worker retains only public environment exports, and the 1,599-file scan finds no configured private secret values, native SQLite import, or provider-mock marker.
 
 Thirty live public-page/viewport checks through 1920px verify global and section artwork, responsive bounds, the desktop-only hero layer, 100/100 ring clearance, scrolled lower sections, and sample controls over normal DNS. The hosted authentication/persistence/ownership/document/modal smoke also passes and removes its uniquely scoped synthetic fixtures before reporting success. Existing production data, secret bindings, DNS, and database schema are preserved; no AI-provider call or new resource is involved.
+
+## Left-background removal
+
+Worker version `af23864e-0149-44a7-8657-6783ed39bd38` removes the left page-edge, hero, and left-aligned section-wave layers, retaining the right-side canvas and section details. The production Cloudflare build passes. Twelve read-only live layout checks through 1920px confirm the removed layers are absent, right-side artwork remains visible, and pages have no horizontal overflow. Production data, secrets, DNS, and schema were not changed.

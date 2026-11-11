@@ -28,6 +28,7 @@ Always use the shared Wordmark/BrandLogo:
 - Use the shared light neumorphic classes and components in globals.css. Avoid layering unnecessary cards inside cards.
 - Visible focus, readable contrast, accessible names, and 44px touch controls matter more than shadow effects.
 - Background effects must remain bounded and respect reduced motion.
+- Keep page-edge and hero artwork on the right. Do not reintroduce left-side page/hero layers or left-aligned section waves; retain right-corner section details.
 - Use BrandCanvas/ReliefArt for static CSS/SVG relief artwork. Keep decorations behind opaque content, hidden from assistive technology, and free of animation loops, raster downloads, or heavy filters. See docs/UI-REDESIGN.md for the design rationale and verification.
 
 ## Architecture
