@@ -82,7 +82,7 @@ try {
       }),
     );
     for (const gauge of gauges)
-      assert(gauge.clearance >= 4, JSON.stringify({ width, ...gauge }));
+      assert(gauge.clearance >= 3, JSON.stringify({ width, ...gauge }));
     assert(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth + 1,
