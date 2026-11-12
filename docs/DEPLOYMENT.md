@@ -39,7 +39,7 @@ The owner’s pilot was first deployed on 10 November 2026. The responsive visua
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `7c957432-8880-4886-b4bc-5a416035a551`
+- **Version:** `a1e3c614-2566-4c78-9138-8f2c078d98f9`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -80,3 +80,7 @@ Worker version `af23864e-0149-44a7-8657-6783ed39bd38` removes the left page-edge
 ## Plain sample container
 
 Worker version `7c957432-8880-4886-b4bc-5a416035a551` removes both the inner and surrounding decorative relief from the sample-preview container. Its neumorphic surface and page-level right background remain. The production build and six live viewport/interaction checks through 1920px pass. Data, secrets, DNS, and schema were not changed.
+
+## Standalone sample — 12 November 2026
+
+Worker version `a1e3c614-2566-4c78-9138-8f2c078d98f9` publishes the public `/sample` route and a compact landing hero. All sample entry links now use the dedicated page. The Node/Cloudflare builds pass. Twelve live Chromium/WebKit layouts through 1920px verify landing-to-sample/back navigation, candidate selection, ranking/reset, auth-page entry links, plain preview surfaces, no overflow, SSR/SEO/sitemap, and no API requests. The 1,602-file artifact scan finds no configured private secret values, native SQLite import, or provider-mock marker; generated environment exports remain public-only. Production data, secret bindings, DNS, and schema were preserved. No new hosting resource or AI-provider call was involved.
