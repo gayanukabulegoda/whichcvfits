@@ -71,41 +71,42 @@ export default function HomePage() {
               <br />
               <span className="ink-green">Better conversations.</span>
             </h1>
-            <div className="hero-body">
-              <p className="hero-copy">
-                Turn a stack of CVs into a shortlist you can explain. Your job
-                criteria, your preferred AI, and the evidence behind every
-                match.
-              </p>
-              <div className="row wrap cta-row gap-3">
-                <Link href="/signup" className="nm-btn-primary">
-                  Create your workspace <ArrowUpRight size={17} />
-                </Link>
-                <Link href="/sample" id="sample-demo" className="nm-btn">
-                  Try the sample <ArrowRight size={17} />
-                </Link>
+            <p className="hero-copy">
+              Turn a stack of CVs into a shortlist you can explain. Your job
+              criteria, your preferred AI, and the evidence behind every match.
+            </p>
+            <div className="hero-bottom">
+              <div className="hero-actions">
+                <div className="row wrap cta-row gap-3">
+                  <Link href="/signup" className="nm-btn-primary">
+                    Create your workspace <ArrowUpRight size={17} />
+                  </Link>
+                  <Link href="/sample" id="sample-demo" className="nm-btn">
+                    Try the sample <ArrowRight size={17} />
+                  </Link>
+                </div>
+                <div className="hero-proof">
+                  <span>
+                    <Check size={14} />
+                    Your criteria, your weights
+                  </span>
+                  <span>
+                    <Check size={14} />
+                    Your AI provider
+                  </span>
+                </div>
               </div>
-              <div className="hero-proof">
-                <span>
-                  <Check size={14} />
-                  Your criteria, your weights
+              <div className="hero-assurance">
+                <span className="icon-tile tone-green">
+                  <ShieldCheck size={21} />
                 </span>
-                <span>
-                  <Check size={14} />
-                  Your AI provider
-                </span>
-              </div>
-            </div>
-            <div className="hero-assurance">
-              <span className="icon-tile tone-green">
-                <ShieldCheck size={21} />
-              </span>
-              <div>
-                <strong>Private by design. Clear by choice.</strong>
-                <p>
-                  Files are read on your device. You choose when CV text goes to
-                  your provider.
-                </p>
+                <div>
+                  <strong>Private by design. Clear by choice.</strong>
+                  <p>
+                    Files are read on your device. You choose when CV text goes
+                    to your provider.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
