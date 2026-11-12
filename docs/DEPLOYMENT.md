@@ -39,7 +39,7 @@ The owner’s pilot was first deployed on 10 November 2026. The responsive visua
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `0eebaa46-6320-4fba-b4a3-62e71d0314c4`
+- **Version:** `58205d22-69d3-4dd2-b7dd-b47687d569bb`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -91,4 +91,4 @@ Worker version `0eebaa46-6320-4fba-b4a3-62e71d0314c4` publishes the tighter desk
 
 ## Background-wave correction — 12 November 2026
 
-The page-wide canvas no longer includes the clipped lower wave layer; right-side circular relief and the soft glow remain. The Node build and Chromium/WebKit checks across six public routes pass with no horizontal overflow. This presentation-only correction does not alter production data, secrets, DNS, schema, or hosting resources.
+The page-wide canvas no longer includes the clipped lower wave layer; right-side circular relief and the soft glow remain. Worker version `58205d22-69d3-4dd2-b7dd-b47687d569bb` is live. The Node build and Chromium/WebKit checks across six public routes pass with no horizontal overflow. Live checks across 320/390/768/1024/1440px confirm global waves are absent and right-side relief remains. This presentation-only correction does not alter production data, secrets, DNS, schema, or hosting resources.

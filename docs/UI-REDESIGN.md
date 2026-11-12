@@ -139,3 +139,5 @@ Published on Worker version `0eebaa46-6320-4fba-b4a3-62e71d0314c4`. Twelve live 
 ### Background-wave correction
 
 The page-wide canvas now renders only the right-side circular relief and its soft glow. Its wave layer was removed because the clipped lower edge made the artwork appear detached below the trust rail. Section-specific waves remain only where they are fully contained by their own surface. Chromium and WebKit checks across six public routes confirm no canvas waves, retained circular relief, and no horizontal overflow.
+
+Published on Worker version `58205d22-69d3-4dd2-b7dd-b47687d569bb`. Live Chromium/WebKit checks at 320/390/768/1024/1440px confirm the global wave is absent, right-side circular relief is present, the sample remains separate, and no page overflows.
