@@ -105,6 +105,12 @@ try {
     .getByRole("button", { name: "Skip for now and explore the studio" })
     .click();
   await page.waitForURL("**/dashboard");
+  assert.equal(
+    await page
+      .getByRole("link", { name: "See a sample result", exact: true })
+      .getAttribute("href"),
+    "/sample",
+  );
   assert(
     await page
       .getByRole("button", { name: "Evaluate 0 CVs", exact: true })
@@ -342,6 +348,7 @@ try {
       "/settings",
       "/how-it-works",
       "/privacy",
+      "/sample",
       "/dashboard?job=" + runId,
     ]) {
       await page.goto(base + path, { waitUntil: "networkidle" });
@@ -389,6 +396,7 @@ try {
     "/settings",
     "/how-it-works",
     "/privacy",
+    "/sample",
   ]) {
     await page.goto(base + route, { waitUntil: "networkidle" });
     await axe(route === "/" ? "home" : route.slice(1));

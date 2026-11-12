@@ -156,6 +156,7 @@ try {
       "settings",
       "how-it-works",
       "privacy",
+      "sample",
     ]) {
       await page.goto(base + "/" + route, { waitUntil: "networkidle" });
       await capture(route || "home", width);

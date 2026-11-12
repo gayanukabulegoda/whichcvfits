@@ -10,6 +10,8 @@ for (const [profile, path] of [
   ["desktop", "/"],
   ["mobile", "/how-it-works"],
   ["mobile", "/privacy"],
+  ["mobile", "/sample"],
+  ["desktop", "/sample"],
 ]) {
   const chrome = await launch({
     chromePath: chromium.executablePath(),

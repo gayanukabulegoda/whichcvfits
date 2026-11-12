@@ -33,7 +33,7 @@ Keep `WHICHCVFITS_JWT_SECRET` and `WHICHCVFITS_ENCRYPTION_SECRET` stable and sep
 4. Select your provider, accessible supported model, and supported reasoning effort.
 5. Evaluate, inspect evidence and interview questions, compare up to three candidates, export CSV, or reopen/delete saved runs in Settings.
 
-The public sample is illustrative and makes no AI calls. Real evaluations always require a verified provider key. Provider failures never become synthetic scores. API access and usage charges are determined by the provider.
+The public [sample page](https://whichcvfits.grbulegoda.com/sample) uses fictional candidates and preset scores, is account-free, and makes no API/AI calls. The landing hero links to it rather than embedding the simulator. Real evaluations always require a verified provider key. Provider failures never become synthetic scores. API access and usage charges are determined by the provider.
 
 Limits: 20 CVs per queue, 5 MiB per file, 20 MiB per selection, 30 PDF pages, and 50,000 extracted characters per CV. Scanned or protected PDFs require pasted text; OCR is not included. Unevaluated queues are held in browser memory.
 
@@ -87,6 +87,7 @@ node scripts/qa-server.mjs
 # Second terminal
 npm run test:browser
 npm run test:design
+node scripts/sample-page-check.mjs
 npm run test:gauges
 ```
 

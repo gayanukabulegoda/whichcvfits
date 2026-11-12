@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import SampleDemo from "@/components/SampleDemo";
 import ReliefArt from "@/components/ReliefArt";
 import { SITE_URL } from "@/lib/seo";
 import { Wordmark } from "@/components/BrandLogo";
@@ -67,9 +66,8 @@ export default function HomePage() {
               <span className="kicker-line" />
             </span>
             <h1>
-              Less CV noise.
-              <br />
-              <span className="ink-blue">More clarity.</span>
+              Less CV noise.{" "}
+              <span className="ink-blue hero-phrase">More clarity.</span>
               <br />
               <span className="ink-green">Better conversations.</span>
             </h1>
@@ -83,9 +81,9 @@ export default function HomePage() {
                 <Link href="/signup" className="nm-btn-primary">
                   Create your workspace <ArrowUpRight size={17} />
                 </Link>
-                <a href="#sample-demo" className="nm-btn">
+                <Link href="/sample" id="sample-demo" className="nm-btn">
                   Try the sample <ArrowRight size={17} />
-                </a>
+                </Link>
               </div>
               <div className="hero-proof">
                 <span>
@@ -109,15 +107,6 @@ export default function HomePage() {
                   your provider.
                 </p>
               </div>
-            </div>
-          </div>
-          <div className="hero-visual">
-            <div className="floating-caption caption-blue">
-              <span className="caption-dot" /> Made for thoughtful hiring
-            </div>
-            <SampleDemo />
-            <div className="floating-caption caption-green">
-              <ShieldCheck size={15} /> Evidence you can review
             </div>
           </div>
         </section>

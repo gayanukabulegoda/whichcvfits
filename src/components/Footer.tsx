@@ -11,6 +11,9 @@ export default function Footer() {
           <p className="muted">Thoughtful screening. Better conversations.</p>
         </div>
         <nav className="row wrap gap-x-6" aria-label="Footer">
+          <Link href="/sample" className="nav-link">
+            Try the sample
+          </Link>
           <Link href="/how-it-works" className="nav-link">
             How it works
           </Link>

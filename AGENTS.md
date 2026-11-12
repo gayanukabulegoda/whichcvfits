@@ -29,7 +29,7 @@ Always use the shared Wordmark/BrandLogo:
 - Visible focus, readable contrast, accessible names, and 44px touch controls matter more than shadow effects.
 - Background effects must remain bounded and respect reduced motion.
 - Keep page-edge artwork on the right. Do not reintroduce left-side page/hero layers or left-aligned section waves; retain right-corner section details.
-- Keep the hero sample-preview container free of internal or surrounding decorative artwork; use a plain neumorphic surface.
+- Keep the /sample preview container free of internal or surrounding decorative artwork; use a plain neumorphic surface.
 - Use BrandCanvas/ReliefArt for static CSS/SVG relief artwork. Keep decorations behind opaque content, hidden from assistive technology, and free of animation loops, raster downloads, or heavy filters. See docs/UI-REDESIGN.md for the design rationale and verification.
 
 ## Architecture
@@ -70,9 +70,9 @@ The asynchronous SQL repository uses build-selected adapters:
 - Supported: text PDF, DOCX, TXT, MD; no OCR.
 - Limits: 20 CVs, 5 MiB/file, 20 MiB/selection, 30 PDF pages, 50,000 extracted characters/CV.
 - Never accept binary garbage, silently truncate, or fabricate placeholder extraction. Show per-file failures and offer paste/edit recovery.
-- The landing sample is clearly illustrative, account-free, and makes no AI requests.
+- The public /sample page is clearly illustrative, account-free, and makes no API/AI requests. The landing page links to it and must not mount the simulator.
 - Desktop >=1024px: 5/7 configuration/results split. Tablet: stacked workspace and two-column results. Mobile <768px: one top step switcher and one safe-area-aware bottom action.
-- The mobile step switcher must be hidden at >=768px; generic segmented-control styles must not override that rule. Tablet landing content uses a wide introduction and two-column sample, rather than squeezing the desktop hero. Settings has three provider cards and two lower sections on desktop, stacked on phones.
+- The mobile step switcher must be hidden at >=768px; generic segmented-control styles must not override that rule. The landing hero is a compact introduction. The separate sample uses candidate/evidence columns on desktop and tablet, with compact candidate choices above the assessment on phones. Settings has three provider cards and two lower sections on desktop, stacked on phones.
 - Preserve readiness, circular match gauges, skill spotlight, comparison (max three), safe CSV export, and history.
 - Gauge labels stack the score above /100 to preserve space inside the progress ring, including 100/100. Check all three sizes with npm run test:gauges on the isolated QA server; the measured label bounds must clear the inner curve by at least 4px.
 - All popups use Dialog with native modal semantics, Escape, focus containment/restoration, and scrollable content.

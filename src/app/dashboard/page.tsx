@@ -913,9 +913,9 @@ export default function DashboardPage() {
                 {!jobReady ? "Define your role" : "Add candidate CVs"}
                 <ArrowRight size={16} />
               </button>
-              <a href="/#sample-demo" className="text-link text-sm">
+              <Link href="/sample" className="text-link text-sm">
                 See a sample result
-              </a>
+              </Link>
             </div>
           ) : (
             <>

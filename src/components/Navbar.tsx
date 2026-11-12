@@ -28,7 +28,7 @@ export default function Navbar({ user }: { user?: SessionUser | null }) {
       ]
     : [
         { href: "/how-it-works", label: "How it works", icon: ArrowRight },
-        { href: "/#sample-demo", label: "Try the sample", icon: ArrowRight },
+        { href: "/sample", label: "Try the sample", icon: ArrowRight },
       ];
   async function logout() {
     setBusy(true);
@@ -117,6 +117,7 @@ export default function Navbar({ user }: { user?: SessionUser | null }) {
               key={l.href}
               href={l.href}
               className="nm-btn justify-start"
+              aria-current={path === l.href ? "page" : undefined}
               onClick={() => setOpen(false)}
             >
               <l.icon size={18} />

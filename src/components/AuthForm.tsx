@@ -200,9 +200,9 @@ export default function AuthForm({ signup = false }: { signup?: boolean }) {
             </Link>
           </p>
         </div>
-        <a className="text-link text-xs self-start" href="/#sample-demo">
+        <Link className="text-link text-xs self-start" href="/sample">
           Explore the sample first
-        </a>
+        </Link>
       </div>
     </main>
   );
