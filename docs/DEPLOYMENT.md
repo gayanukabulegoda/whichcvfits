@@ -39,7 +39,7 @@ The owner’s pilot was first deployed on 10 November 2026. The responsive visua
 - **URL:** https://whichcvfits.grbulegoda.com
 - **Worker address:** https://whichcvfits.gayanukabulegoda.workers.dev
 - **Worker:** `whichcvfits`
-- **Version:** `a1e3c614-2566-4c78-9138-8f2c078d98f9`
+- **Version:** `0eebaa46-6320-4fba-b4a3-62e71d0314c4`
 - **Database:** `whichcvfits-db`, created with the selected APAC location hint; all four migrations applied remotely.
 - **Secrets:** two independent production secret bindings verified after publishing; values are absent from generated Worker/browser code and Git.
 - **Account changes:** no plan upgrade or domain purchase was requested or performed. Additional version-preview URLs are disabled.
@@ -84,3 +84,7 @@ Worker version `7c957432-8880-4886-b4bc-5a416035a551` removes both the inner and
 ## Standalone sample — 12 November 2026
 
 Worker version `a1e3c614-2566-4c78-9138-8f2c078d98f9` publishes the public `/sample` route and a compact landing hero. All sample entry links now use the dedicated page. The Node/Cloudflare builds pass. Twelve live Chromium/WebKit layouts through 1920px verify landing-to-sample/back navigation, candidate selection, ranking/reset, auth-page entry links, plain preview surfaces, no overflow, SSR/SEO/sitemap, and no API requests. The 1,602-file artifact scan finds no configured private secret values, native SQLite import, or provider-mock marker; generated environment exports remain public-only. Production data, secret bindings, DNS, and schema were preserved. No new hosting resource or AI-provider call was involved.
+
+## Compact hero and raised headings — 12 November 2026
+
+Worker version `0eebaa46-6320-4fba-b4a3-62e71d0314c4` publishes the tighter desktop hero and shared static heading relief. Node and Cloudflare production builds pass. Twelve live Chromium/WebKit homepage layouts through 1920px verify compact desktop proportions, no overflow, exact unshadowed wordmarks, and the separate sample. Additional live checks cover public-page headings, increased-contrast suppression, sample navigation/ranking/selection, and no API calls. Both production secret bindings remain configured. All 1,602 scanned generated code/config files exclude configured private values, native SQLite, and provider mocks; generated environment exports remain public-only. Production data, secrets, DNS, schema, and hosting resources were preserved.
