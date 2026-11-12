@@ -88,3 +88,7 @@ Worker version `a1e3c614-2566-4c78-9138-8f2c078d98f9` publishes the public `/sam
 ## Compact hero and raised headings — 12 November 2026
 
 Worker version `0eebaa46-6320-4fba-b4a3-62e71d0314c4` publishes the tighter desktop hero and shared static heading relief. Node and Cloudflare production builds pass. Twelve live Chromium/WebKit homepage layouts through 1920px verify compact desktop proportions, no overflow, exact unshadowed wordmarks, and the separate sample. Additional live checks cover public-page headings, increased-contrast suppression, sample navigation/ranking/selection, and no API calls. Both production secret bindings remain configured. All 1,602 scanned generated code/config files exclude configured private values, native SQLite, and provider mocks; generated environment exports remain public-only. Production data, secrets, DNS, schema, and hosting resources were preserved.
+
+## Background-wave correction — 12 November 2026
+
+The page-wide canvas no longer includes the clipped lower wave layer; right-side circular relief and the soft glow remain. The Node build and Chromium/WebKit checks across six public routes pass with no horizontal overflow. This presentation-only correction does not alter production data, secrets, DNS, schema, or hosting resources.
